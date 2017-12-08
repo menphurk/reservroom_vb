@@ -4,7 +4,7 @@
 </html>
         <!--JS-->
         <script src="js/jquery.js?rev=<?php echo time();?>"></script>
-		<script src="js/scripts.js?rev=<?php echo time();?>"></script>
+		<script src="js/scripts.js"></script>
 		<script src="js/Func_time.js?rev=<?php echo time();?>"></script>
         <script src="js/bootstrap.min.js?rev=<?php echo time();?>"></script>  
 		<script src="js/moment.min.js?rev=<?php echo time();?>"></script>

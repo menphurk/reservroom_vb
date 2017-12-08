@@ -590,7 +590,13 @@
     });
 
     $("#room").change(function(){
-        alert(this);
+        var id_room = $(this).val();
+        if(id_room == "RVB00001" || id_room == "RVB00002" || id_room == "RVB00003" || id_room == "RVB00005")
+        {
+            $("#check_amp").prop("disabled", true);;
+            $("#check_wireless_mic").prop("disabled", true);;
+            $("#check_mic").prop("disabled", true);
+        }
     });
 
 });
