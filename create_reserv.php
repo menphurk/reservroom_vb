@@ -80,7 +80,7 @@
                 <select id="startyear" name="startyear">
                     <option value="">--- เลือกปี ---</option>
                     <?php
-                    for($year = 2550; $year<=$date_year; $year++)
+                    for($year = 2550; $year<=$date_year+1; $year++)
                     {
                         if($date_year == $year)
                         {
@@ -146,7 +146,7 @@
                 <select id="endyear" name="endyear">
                     <option value="">--- เลือกปี ---</option>
                     <?php
-                    for($year = 2550; $year<=$date_year; $year++)
+                    for($year = 2550; $year<=$date_year+1; $year++)
                     {
                         if($date_year == $year)
                         {
