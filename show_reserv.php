@@ -258,7 +258,7 @@
                 }
             ?>
             <button class="btn btn-app btn-yellow btn-xs" <?php echo $disabled_btnEditAnddel;?> onclick="javascript:window.location.href='edit_reserv.php?id_reserv=<?php echo $_SESSION['reserv'];?>'"><i class="ace-icon fa fa-pencil bigger-160"></i>แก้ไข</button>
-            <button class="btn btn-app btn-danger btn-xs" <?php echo $disabled_btnEditAnddel;?> onclick="remove_reserv('<?php echo $_SESSION['reserv'];?>')" <?php echo $disabled;?>><i class="ace-icon fa fa-trash-o bigger-200"></i>ลบ</button>
+            <button class="btn btn-app btn-danger btn-xs" <?php echo $disabled_btnEditAnddel;?> onclick="remove_reserv('<?php echo $_SESSION['reserv'];?>')"><i class="ace-icon fa fa-trash-o bigger-200"></i>ลบ</button>
             <?php if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1){?>
             <button class="btn btn-app btn-success btn-xs" <?php echo $disabled;?> onclick="confirm_reserv('<?php echo $_SESSION['reserv'];?>')"><i class="ace-icon fa fa-check bigger-200"></i>ยืนยัน</button>
             <?php } ?>

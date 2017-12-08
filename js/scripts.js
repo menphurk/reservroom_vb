@@ -589,6 +589,10 @@
         }        
     });
 
+    $("#room").change(function(){
+        alert(this);
+    });
+
 });
 window.onload = load_data(1,'','');
 window.onload = load_member(1,'','');
