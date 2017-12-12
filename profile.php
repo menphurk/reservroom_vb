@@ -1,3 +1,4 @@
+<!--//-->
 <?php 
     include_once('layout/header.php');
     include_once('layout/menu.php');
@@ -70,7 +71,16 @@
                                     <label class="col-sm-4 control-label no-padding-right" for="username_log">ชื่อผู้ใช้งาน</label>
 
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="text" id="username_log" placeholder="Username" value="<?php echo $row_User['username_log'];?>" />
+                                        <?php 
+                                        if($_SESSION['login'][3] == 1)
+                                        {
+                                            $dis_textUser = "";
+                                        }else
+                                        {
+                                            $dis_textUser = "disabled";
+                                        }
+                                        ?>
+                                        <input class="form-control" type="text" id="username_log" placeholder="Username" value="<?php echo $row_User['username_log'];?>" <?php echo $dis_textUser;?>>
                                     </div>
                                 </div>
 

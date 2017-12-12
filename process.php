@@ -370,7 +370,7 @@
     if(isset($_REQUEST['id_reserv']))
     {
         $id_reserv = mysql_real_escape_string($_POST['id_reserv']);
-        $check_reserv = "UPDATE reserv SET status_reserv = 'yes' where id_reserv='".$id_reserv."'";
+        $check_reserv = "UPDATE reserv SET status_reserv = '2' where id_reserv='".$id_reserv."'";
         $result_reserv = mysql_query($check_reserv);
         if($result_reserv)
         {

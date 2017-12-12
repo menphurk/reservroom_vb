@@ -33,12 +33,17 @@
                         <p>เลขที่จอง : <strong><ins><?php echo $rowEdit_reserv['id_reserv'];?></ins></strong></p>
                         <p>สถานะ : <strong><ins>
                             <?php 
-                                if($rowEdit_reserv['status_reserv'] == "ํyes")
+                                if($rowEdit_reserv['id_status_reserv'] == '1'){
+                                    echo "<font color='#d9534f'>ไม่อนุมัติ</font>";
+                                }else if($rowEdit_reserv['id_status_reserv'] == '2')
                                 {
                                     echo "<font color='#5cb85c'>อนุมัติ</font>";
-                                }else
+                                }else if($rowEdit_reserv['id_status_reserv'] == '3')
                                 {
-                                    echo "<font color='#d9534f'>ไม่อนุมัติ</font>";
+                                    echo "<font color='#d44950'>ยกเลิก</font>";
+                                    echo "<br>";
+                                    echo "</strong>";
+                                    echo "หมายเหตุ : ".$rowEdit_reserv['comment_reserv']."";
                                 }
                             ?>
                         </ins></strong></p>

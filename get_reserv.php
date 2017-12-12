@@ -31,7 +31,7 @@ if(isset($_POST['get_dataReserv']))
                     <option value="rs.id_room">ห้องประชุม</option>
                     <option value="name_log">ชื่อผู้จอง</option>
                     <option value="startday">วันที่จอง</option>
-                    <option value="status_reserv">สถานะ</option>
+                    <option value="id_status_reserv">สถานะ</option>
                 </select>
             </div>
             <div class="form-group">
@@ -102,11 +102,14 @@ if(isset($_POST['get_dataReserv']))
             echo "<tr id='pagination_reserv'>";
             echo "<td>".$row_event['id_reserv']."</td>";
             echo "<td>";
-            if($row_event['status_reserv'] == 'yes'){
-                echo "<font color='#5cb85c'>อนุมัติ</font>";
-            }else
+            if($row_event['id_status_reserv'] == '1'){
+                echo "<font color='#A0522D'>ไม่อนุมัติ</font>";
+            }else if($row_event['id_status_reserv'] == '2')
             {
-                echo "<font color='#d9534f'>ไม่อนุมัติ</font>";
+                echo "<font color='#5cb85c'>อนุมัติ</font>";
+            }else if($row_event['id_status_reserv'] == '3')
+            {
+                echo "<font color='#d9534f'>ยกเลิก</font>";
             }
             echo "</td>";
             echo "<td>".$row_event['topic']."</td>";

@@ -34,18 +34,28 @@
                         </div>
                             <!-- PAGE CONTENT BEGINS -->
                             <ul class="nav nav-tabs" id="myTabs" role="tablist"> 
-
+                                
                                 <li role="presentation" class="active">
+                                    <a href="#event_today" id="event_today-tab" role="tab" data-toggle="tab" aria-controls="event_today" aria-expanded="false"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;รายการจองวันนี้</a>
+                                </li>
+                                <li role="presentation" class="">
                                     <a href="#event_list" id="event_list-tab" role="tab" data-toggle="tab" aria-controls="event_list" aria-expanded="false"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;ข้อมูลแบบปฏิทิน</a>
                                 </li> 
                                 <li role="presentation" class="">
                                     <a href="#event_table" role="tab" id="event_table-tab" data-toggle="tab" aria-controls="event_table" aria-expanded="false"><span class="glyphicon glyphicon-list"></span>&nbsp;ข้อมูลแบบตาราง</a>
-                                </li> 
+                                </li>
 
                             </ul>
                             <div class="tab-content" id="myTabContent">
 
-                                <div class="tab-pane fade active in" role="tabpanel" id="event_list" aria-labelledby="event_list-tab">
+                                <div class="tab-pane fade active in" role="tabpanel" id="event_today" aria-labelledby="event_today-tab"> 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span id="data_today"></span>
+                                        </div>
+                                    </div>     
+                                </div>
+                                <div class="tab-pane fade" role="tabpanel" id="event_list" aria-labelledby="event_list-tab">
                                 <p>
                                     <div style="margin:auto;width:100%;" class="show_calendar">
                                     
@@ -60,8 +70,8 @@
                                     <strong>***หมายเหตุ***</strong><br>
                                         <font color="#5cb85c">สีเขียว = ห้องรับรองใหญ่</font><br>
                                         <font color="#f0ad4e">สีส้ม = ห้องรับรองเล็ก</font><br>
-                                        <font color="#5bc0de">สีฟ้า = ห้องกิจกรรมอาสากาชาด ชั้น 2</font><br>
-                                        <font color="#428bca">สีน้ำเงิน = ห้องศูนย์สมรรถนะการคิดเด็ก ชั้น 2</font><br>
+                                        <font color="#838B8B">สีเทา = ห้องกิจกรรมอาสากาชาด ชั้น 2</font><br>
+                                        <font color="#000000">สีดำ = ห้องศูนย์สมรรถนะการคิดเด็ก ชั้น 2</font><br>
                                         <font color="#d9534f">สีแดง = ห้องประชุม ชั้น 4</font><br>
                                 </p>
                                 </div>

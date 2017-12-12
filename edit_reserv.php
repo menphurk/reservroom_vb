@@ -49,6 +49,41 @@
 </div>
 <div class="panel-body">
     <form action="update_reserv.php?id_reserv=<?php echo $_GET['id_reserv'];?>" method="post" class="form-horizontal">
+    <?php 
+    if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1)
+    {
+    ?>
+        <!-- <p class="text-right"><strong>สถานะการจอง : </strong>
+            <select name="status_reserv" id="status_reserv">
+            <?php
+                $sql_statusReserv = "SELECT * FROM status_reserv";
+                $query_statusReserv = mysql_query($sql_statusReserv);
+                while($row_statusReserv = mysql_fetch_array($query_statusReserv))
+                {
+                    if($row_statusReserv['id'] == $row_reserv_edit['id_status_reserv'])
+                    {
+                        $selected_status = "selected";
+                    }else
+                    {
+                        $selected_status = "";
+                    }
+                //echo "<option value='$row_statusReserv[id]' $selected_status>$row_statusReserv[name_reserv]</option>";
+                }
+            ?>
+            </select>
+            
+        </p>
+        <p class="text-right"><span id="comment_reserv">
+        <?php
+        if($row_reserv_edit['id_status_reserv'] == 3)
+        {
+            echo "หมายเหตุ : <input type='text' id='comment_reserv' name='comment_reserv' value='$row_reserv_edit[comment_reserv]'>";
+        }
+        ?>
+        </span></p> -->
+    <?php
+    }
+    ?>
     <div class="page-header">
         <h3>วัน/เวลาที่จอง</h3>
     </div>        
@@ -104,7 +139,7 @@
             <select id="startyear" name="startyear">
                 <option value="">--- เลือกปี ---</option>
                 <?php
-                for($year = 2550; $year<=$date_year; $year++)
+                for($year = 2550; $year<=$date_year+10; $year++)
                 {
                     if($str_start_year == $year)
                     {
@@ -171,7 +206,7 @@
             <select id="endyear" name="endyear">
                 <option value="">--- เลือกปี ---</option>
                 <?php
-                for($year = 2550; $year<=$date_year; $year++)
+                for($year = 2550; $year<=$date_year+10; $year++)
                 {
                     if($str_end_year == $year)
                     {

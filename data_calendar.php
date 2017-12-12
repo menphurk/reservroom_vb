@@ -17,7 +17,7 @@ if ($result_calendar = mysql_query($get_calendar)) {
         }
         if($obj_calendar['id_room'] == "RVB00002")
         {
-            $color = "#5bc0de";
+            $color = "#838B8B";
         }
         if($obj_calendar['id_room'] == "RVB00003")
         {
@@ -29,7 +29,7 @@ if ($result_calendar = mysql_query($get_calendar)) {
         }
         if($obj_calendar['id_room'] == "RVB00005")
         {
-            $color = "#428bca";
+            $color = "#000000";
         }
 
         $startday = $obj_calendar['startday'];
@@ -52,6 +52,7 @@ if ($result_calendar = mysql_query($get_calendar)) {
             'url' => 'show_reserv.php?id_reserv='.$obj_calendar['id_reserv'],
             'room' => $obj_calendar['name_room'],
             'name' => $obj_calendar['name_log'],
+            "allDay"=> false
      );
     }
     echo json_encode($data_event);

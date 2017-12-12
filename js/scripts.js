@@ -594,14 +594,36 @@
         if(id_room == "RVB00001" || id_room == "RVB00002" || id_room == "RVB00003" || id_room == "RVB00005")
         {
             $("#check_amp").prop("disabled", true);;
-            $("#check_wireless_mic").prop("disabled", true);;
+            $("#check_amp").prop("checked", false);
+            $("#check_wireless_mic").prop("disabled", true);
+            $("#check_wireless_mic").prop("checked", false);
             $("#check_mic").prop("disabled", true);
+            $("#check_mic").prop("checked", false);
+            $("#txt_wireless_mic").val("");
+            $("#txt_mic").val("");
+        }else 
+        {
+            $("#check_amp").prop("disabled", false);;
+            $("#check_wireless_mic").prop("disabled", false);;
+            $("#check_mic").prop("disabled", false);            
         }
+    });
+
+    $("#status_reserv").change(function(){
+        var status_reserv = $(this).val();
+        var txt_reserv = "";
+        if(status_reserv == 3)
+        {
+            txt_reserv += "หมายเหตุ : <input class='' type='text' name='comment_reserv' id='comment_reserv'>";
+        }
+
+        $("#comment_reserv").html(txt_reserv);
     });
 
 });
 window.onload = load_data(1,'','');
 window.onload = load_member(1,'','');
+window.onload = load_today(1,'','');
 function load_data(page,txt_searchevent,dataReserv_condition)
 {
     if(txt_searchevent != "")
@@ -641,6 +663,22 @@ function load_member(page,search_member,dataMember_condition)
         success: function(res_data_member)
         {
             $("#data_member").html(res_data_member);
+        }
+    });
+}
+function load_today()
+{
+    $.ajax({
+        type: "POST",
+        url: "get_reserv_today.php",
+        data: "data=1",
+        beforeSend: function()
+        {
+            $("#data_today").html("Loading...");
+        },
+        success: function(ch_data_today)
+        {
+            $("#data_today").html(ch_data_today);
         }
     });
 }
@@ -687,11 +725,12 @@ function change_room()
                 $("#show_textbox_reserv").html(res_data_role);
             }
         });         
-    }else if(data_condition == "status_reserv")
+    }else if(data_condition == "id_status_reserv")
     {
         var txt_reserv = "<select class='form-control' id='txt_searchreserv'>";
-        txt_reserv += "<option value='no'>ไม่อนุมัติ</option>";
-        txt_reserv += "<option value='yes'>อนุมัติ</option>";
+        txt_reserv += "<option value='1'>ไม่อนุมัติ</option>";
+        txt_reserv += "<option value='2'>อนุมัติ</option>";
+        txt_reserv += "<option value='3'>ยกเลิก</option>";
         txt_reserv += "</select>";
         $("#show_textbox_reserv").html(txt_reserv);
     }else if(data_condition == "startday")
@@ -1002,3 +1041,4 @@ function room_delete(id_room)
         return false;
     }
 }
+

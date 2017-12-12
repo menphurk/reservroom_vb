@@ -30,7 +30,7 @@
                                                 <label for="report_year">เลือกปีที่ต้องการ </label>
                                                 <select id="report_year_txt" name="report_year">
                                                     <option value="">---</option>
-                                                    <?php for($i=2560;$i>=2557;$i--){?>
+                                                    <?php for($i=2570;$i>=2559;$i--){?>
                                                     <option value="<?php echo ($i-543);?>"><?php echo $i;?></option>
                                                     <?php } ?>   
                                                 </select>
@@ -49,7 +49,7 @@
                                                 <label for="txt_year">ปี : </label>
                                                 <select id="txt_year" name="txt_year">
                                                     <option value="">---</option>
-                                                    <?php for($i=2560;$i>=2557;$i--){?>
+                                                    <?php for($i=2570;$i>=2559;$i--){?>
                                                     <option value="<?php echo ($i-543);?>"><?php echo $i;?></option>
                                                     <?php } ?>   
                                                 </select>

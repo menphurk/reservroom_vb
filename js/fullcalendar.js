@@ -4438,6 +4438,7 @@ $.extend(Grid.prototype, {
 			seg = segs[i];
 			seg.event = event;
 			seg.eventStartMS = +eventStart;
+			seg.eventEndMS = +eventEnd;
 			seg.eventDurationMS = eventEnd - eventStart;
 		}
 
@@ -5152,7 +5153,7 @@ $.extend(DayGrid.prototype, {
 		var isRTL = view.opt('isRTL');
 		var event = seg.event;
 		var isDraggable = view.isEventDraggable(event);
-		var isResizable = !disableResizing && event.allDay && seg.isEnd && view.isEventResizable(event);
+		var isResizable = !disableResizing && event.allDay && view.isEventResizable(event);
 		var classes = this.getSegClasses(seg, isDraggable, isResizable);
 		var skinCss = this.getEventSkinCss(event);
 		var timeHtml = '';
@@ -6300,6 +6301,7 @@ $.extend(TimeGrid.prototype, {
 		var timeText;
 		var fullTimeText; // more verbose time text. for the print stylesheet
 		var startTimeText; // just the start time text
+		var endTimeText;
 
 		classes.unshift('fc-time-grid-event');
 
@@ -6311,12 +6313,14 @@ $.extend(TimeGrid.prototype, {
 				timeText = view.getEventTimeText(seg.start, seg.end);
 				fullTimeText = view.getEventTimeText(seg.start, seg.end, 'LT');
 				startTimeText = view.getEventTimeText(seg.start, null);
+				endTimeText = view.getEventTimeText(event.end,null);
 			}
 		} else {
 			// Display the normal time text for the *event's* times
-			timeText = view.getEventTimeText(event);
-			fullTimeText = view.getEventTimeText(event, 'LT');
+			timeText = view.getEventTimeText(seg.start, seg.end);
+			fullTimeText = view.getEventTimeText(seg.start, seg.end, 'LT');
 			startTimeText = view.getEventTimeText(event.start, null);
+			endTimeText = view.getEventTimeText(event.end,null);
 		}
 
 		return '<a class="' + classes.join(' ') + '"' +
@@ -6333,6 +6337,7 @@ $.extend(TimeGrid.prototype, {
 					(timeText ?
 						'<div class="fc-time"' +
 						' data-start="' + htmlEscape(startTimeText) + '"' +
+						' data-end="'+ htmlEscape(endTimeText) +'"' +
 						' data-full="' + htmlEscape(fullTimeText) + '"' +
 						'>' +
 							'<span>' + htmlEscape(timeText) + '</span>' +
