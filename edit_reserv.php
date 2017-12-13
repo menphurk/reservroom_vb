@@ -252,7 +252,7 @@ function create_time_range($start, $end, $interval = '30 mins', $format = '24')
                 <?php 
                 foreach($times as $starttime)
                 { 
-                    if($str_starttime == $starttime)
+                    if($starttime == $str_starttime)
                     {
                         $cur_starttime = "selected";
                     }else

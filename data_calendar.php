@@ -7,6 +7,7 @@ include_once('include/Conn.php');
 $get_calendar = "SELECT * FROM reserv as rs";
 $get_calendar .= " LEFT JOIN room as r on(r.id_room = rs.id_room)";
 $get_calendar .= " JOIN users as u on(u.id_user = rs.update_id)";
+$get_calendar .= " JOIN title as t on(t.title_id = u.title_id)";
 $get_calendar .= " ORDER by id_reserv DESC";
 if ($result_calendar = mysql_query($get_calendar)) {
     while ($obj_calendar = mysql_fetch_array($result_calendar)) {
@@ -51,7 +52,7 @@ if ($result_calendar = mysql_query($get_calendar)) {
             'color' => $color,
             'url' => 'show_reserv.php?id_reserv='.$obj_calendar['id_reserv'],
             'room' => $obj_calendar['name_room'],
-            'name' => $obj_calendar['name_log'],
+            'name' => $obj_calendar['title_name']." ".$obj_calendar['name_log'],
             "allDay"=> false
      );
     }
