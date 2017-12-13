@@ -15,6 +15,7 @@
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+    var date_last_clicked = null;
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -33,6 +34,15 @@
                 $('#eventUrl').attr('href',event.url);
                 $("#fullCalModal").modal();
             });
+        },
+        dayClick: function(date, allDay, jsEvent, view) {
+            var date = date.format();
+            var ex_date = date.split('-');
+            //alert(ex_date[2]);
+            var day_reserv = ex_date[2];
+            var month_reserv = ex_date[1];
+            var year_reserv = ex_date[0];
+            window.location.href='create_reserv.php?startday='+day_reserv+'&endday='+day_reserv+'&month='+month_reserv+'&year='+year_reserv;
         },
         height: 500,
         buttonIcons:{
@@ -785,14 +795,14 @@ function remove_reserv(id_reserv)
         return false;
     }
 }
-function confirm_reserv(id_reserv)
+function confirm_reserv(id_reserv,status)
 {
     if(confirm("ยืนยันข้อมูลการจองห้อง ??"))
     {
         $.ajax({
             type: "POST",
             url: "process.php",
-            data: "id_reserv="+id_reserv,
+            data: "id_reserv="+id_reserv+"&status="+status,
             success: function(res_confirm)
             {
                 if(res_confirm == 1)
@@ -811,6 +821,42 @@ function confirm_reserv(id_reserv)
     {
         return false;
     }
+}
+function cancle_reserv(id_reserv,status)
+{
+    bootbox.prompt("หมายเหตุยกเลิกการจองห้อง?", function(result) {
+        if (result !== null) {
+                var comment_reserv = $(".comment_reserv").val();
+                if(comment_reserv == "")
+                {
+                    alert("กรุณากรอกข้อมูลด้วยครับ");
+                    $(".comment_reserv").focus();
+                    return false;
+                }else
+                {
+                    $.ajax({
+                        type: "POST",
+                        url: "process.php",
+                        data: "id_reserv="+id_reserv+"&status="+status+"&comment_reserv="+comment_reserv,
+                        success: function(res_cancle)
+                        {
+                            if(res_cancle == 1)
+                            {
+                                alert("ยกเลิกข้อมูลการจองเรียบร้อยแล้ว");
+                                window.location.href='reserv.php';
+                            }else
+                            {
+                                alert("เกิดการผิดพลาด กรุณาลองใหม่อีกครั้ง!!");
+                                window.location.href='reserv.php';
+                            }
+                        }
+                    });
+                    return true;
+                }          
+        } else {
+            
+        }
+    });
 }
 function CheckNum(){
 		if (event.keyCode < 48 || event.keyCode > 57){
@@ -1070,3 +1116,13 @@ setInterval(function(){ // เขียนฟังก์ชัน javascript �
             }
     }).responseText;
 },1000);
+
+// $("#bootbox-regular").on(ace.click_event, function() {
+//     bootbox.prompt("What is your name?", function(result) {
+//         if (result === null) {
+            
+//         } else {
+            
+//         }
+//     });
+// });

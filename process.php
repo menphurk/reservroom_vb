@@ -370,16 +370,27 @@
     //-----------------------------------------------------------------------------------//
     if(isset($_REQUEST['id_reserv']))
     {
-        $id_reserv = mysql_real_escape_string($_POST['id_reserv']);
-        $check_reserv = "UPDATE reserv SET id_status_reserv = '2' where id_reserv='".$id_reserv."'";
-        $result_reserv = mysql_query($check_reserv);
-        if($result_reserv)
-        {
-            echo 1;
-        }else
-        {
-            echo 0;
-        }        
+            $id_reserv = mysql_real_escape_string($_POST['id_reserv']);
+            $status = mysql_real_escape_string($_POST['status']);
+            $comment_reserv = mysql_real_escape_string($_POST['comment_reserv']);
+            $check_reserv = "UPDATE reserv SET ";
+            if($status == '1')
+            {
+                $check_reserv .= "id_status_reserv = '2' ";
+            }else if($status == '2')
+            {
+                $check_reserv .= "id_status_reserv = '3', ";
+                $check_reserv .= "comment_reserv = '".$comment_reserv."' ";
+            }
+            $check_reserv .= "where id_reserv='".$id_reserv."'";
+            $result_reserv = mysql_query($check_reserv);
+            if($result_reserv)
+            {
+                echo 1;
+            }else
+            {
+                echo 0;
+            } 
     }
     if(isset($_REQUEST['id_reserv_del']))
     {

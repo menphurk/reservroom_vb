@@ -119,6 +119,7 @@
     background-color: rgba(0,0,0,.0001) !important;
 }
 </style>
+
 <?php 
     include_once('layout/footer.php');
 ?>

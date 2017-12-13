@@ -10,6 +10,12 @@
     $date_day = date("d");
     $date_year = $date_year+543;
     //---ConvertDate---//
+    if(isset($_GET['startday']) && isset($_GET['endday']))
+    {
+        $date_day = mysql_real_escape_string($_GET['startday']);
+        $date_month = mysql_real_escape_string($_GET['month']);
+        $date_year = mysql_real_escape_string($_GET['year']+543);
+    }
 
 ?>
 <div class="col-md-12">
@@ -182,7 +188,7 @@ function create_time_range($start, $end, $interval = '30 mins', $format = '24')
         $times[] = date($returnTimeFormat, $startTime); 
             return $times; 
 }
-     $times = create_time_range('08:30', '16:30', '15 mins');
+     $times = create_time_range('06:00', '16:30', '15 mins');
 ?>
         <div class="form-group">
             <label for="starttime" class="col-sm-1 control-label">เวลาจอง :</label>
@@ -247,7 +253,7 @@ function create_time_range($start, $end, $interval = '30 mins', $format = '24')
         <div class="page-header">
             <h3>รายละเอียดการจอง</h3>
             <div class="form-group">
-                <label for="typeActivity" class="col-sm-2 control-label">ประเภทงานประชุม :</label>
+                <label for="typereserv" class="col-sm-2 control-label">ประเภทงานประชุม :</label>
                 <div class="col-sm-2">
                     <select class="form-control" id="typereserv" name="typereserv">
                         <option value="">--- กรุณาเลือก ---</option>
@@ -275,20 +281,20 @@ function create_time_range($start, $end, $interval = '30 mins', $format = '24')
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">จำนวนผู้เข้าประชุม :</label>
+                <label for="num" class="col-sm-2 control-label">จำนวนผู้เข้าประชุม :</label>
                 <div class="col-sm-1">
                     <input type="text" class="form-control" id="num" name="num" onkeyPress="CheckNum()">
                 </div>
                 <label for="" class="control-label">คน</label>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">รายชื่อผู้เข้าร่วมประชุม :</label>
+                <label for="namejoin" class="col-sm-2 control-label">รายชื่อผู้เข้าร่วมประชุม :</label>
                 <div class="col-sm-2">
                     <textarea class="form-control" rows="8" cols="40" style="resize:none;" id="namejoin" name="namejoin"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-2 control-label">เบอร์โทรศัพท์ :</label>
+                <label for="tel" class="col-sm-2 control-label">เบอร์โทรศัพท์ :</label>
                 <div class="col-sm-2">
                     <input type="text" class="form-control" id="tel" name="tel">
                 </div>
@@ -377,6 +383,23 @@ function create_time_range($start, $end, $interval = '30 mins', $format = '24')
                     </div>                    
                 </div>
             </div>
+            <!-- <div class="form-group">
+                <label for="" class="col-sm-2 control-label">รูปแบบการจัดห้องประชุม :</label>
+                <div class="col-sm-8">
+                    <div class="radio">
+                    <label>
+                        <input type="radio" name="table_room" id="table_room" value="1">
+                        แบบรูปตัว U
+                    </label>
+                    </div>
+                    <div class="radio">
+                    <label>
+                        <input type="radio" name="table_room" id="table_room" value="2">
+                        แบบจัดเรียง
+                    </label>
+                    </div>
+                </div>
+            </div> -->
         </div>
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-10">

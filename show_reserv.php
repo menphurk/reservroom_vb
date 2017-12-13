@@ -245,7 +245,7 @@
             </p>
             <p>&nbsp;</p>
             <?php
-            if($rowEdit_reserv['id_status_reserv'] == '2')
+            if($rowEdit_reserv['id_status_reserv'] == '3')
             {
                 $disabled = "disabled";
             }else
@@ -265,8 +265,32 @@
             ?>
             <button class="btn btn-app btn-yellow btn-xs" <?php echo $disabled_btnEditAnddel;?> onclick="javascript:window.location.href='edit_reserv.php?id_reserv=<?php echo $_SESSION['reserv'];?>'"><i class="ace-icon fa fa-pencil bigger-160"></i>แก้ไข</button>
             <button class="btn btn-app btn-danger btn-xs" <?php echo $disabled_btnEditAnddel;?> onclick="remove_reserv('<?php echo $_SESSION['reserv'];?>')"><i class="ace-icon fa fa-trash-o bigger-200"></i>ลบ</button>
-            <?php if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1){?>
-            <button class="btn btn-app btn-success btn-xs" <?php echo $disabled;?> onclick="confirm_reserv('<?php echo $_SESSION['reserv'];?>')"><i class="ace-icon fa fa-check bigger-200"></i>ยืนยัน</button>
+            <?php if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1){
+                $confirm_status = array($rowEdit_reserv['id_status_reserv']);
+                if(in_array('1',$confirm_status))
+                {
+                    $btn_color = "sucess";
+                    $icon_ = "check";
+                    $btn_text = "อนุมัติ";
+                    $btn_click = "confirm_reserv";
+                }
+                if(in_array('2',$confirm_status))
+                {
+                    $btn_color = "danger";
+                    $icon_ = "times";
+                    $btn_text = "ยกเลิก";
+                    $btn_click = "cancle_reserv";
+                    $btn_id = "bootbox-regular";
+                }
+                if(in_array('3',$confirm_status))
+                {
+                    $btn_color = "danger";
+                    $icon_ = "times";
+                    $btn_text = "ยกเลิก";
+                    $btn_click = "cancle_reserv";                    
+                }
+            ?>
+            <button class="btn btn-app btn-<?php echo $btn_color;?> btn-xs" id="<?php echo $btn_id;?>" <?php echo $disabled;?> onclick="<?php echo $btn_click;?>('<?php echo $_SESSION['reserv'];?>',<?php echo $confirm_status[0];?>)"><i class="ace-icon fa fa-<?php echo $icon_;?> bigger-200"></i><?php echo $btn_text;?></button>
             <?php } ?>
             <button class="btn btn-app btn-pink btn-xs" onclick="window.location.href='export_pdf.php?uidReserv=<?php echo $_SESSION['reserv'];?>&key=<?php echo $token;?>'"><i class="ace-icon fa fa-file-pdf-o bigger-160"></i>Export</button>
             </center>

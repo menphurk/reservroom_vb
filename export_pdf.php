@@ -122,12 +122,14 @@
                             }else if($rowEdit_reserv['check_catering'] == 2)
                             {
                                 $show_catering = "จัดเลี้ยงเอง ยืมอุปกรณ์";
+                                $show_txtcatering = "(".$rowEdit_reserv['txt_catering2'].")";
                             }else if($rowEdit_reserv['check_catering'] == 3)
                             {
                                 $show_catering = "อื่นๆ";
+                                $show_txtcatering = "(".$rowEdit_reserv['txt_cateringother'].")";
                             }
                         ?>
-                        จัดเลี้ยงอาหาร : <ins><?php echo $show_catering;?></ins>
+                        จัดเลี้ยงอาหาร : <ins><?php echo $show_catering;?></ins>&nbsp;<?php echo $show_txtcatering;?>
                     </td>
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;">

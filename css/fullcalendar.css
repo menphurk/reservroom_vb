@@ -409,7 +409,6 @@ temporary rendered events).
 .fc-row .fc-helper-skeleton {
 	z-index: 5;
 }
-
 .fc-row .fc-content-skeleton td,
 .fc-row .fc-helper-skeleton td {
 	/* see-through to the background below */
@@ -419,7 +418,9 @@ temporary rendered events).
 	/* don't put a border between events and/or the day number */
 	border-bottom: 0;
 }
-
+.fc-row .fc-content-skeleton td:hover {
+	cursor: pointer;
+}
 .fc-row .fc-content-skeleton tbody td, /* cells with events inside (so NOT the day number cell) */
 .fc-row .fc-helper-skeleton tbody td {
 	/* don't put a border between event cells */

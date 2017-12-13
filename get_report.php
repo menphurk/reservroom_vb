@@ -37,6 +37,7 @@ $result_room = mysql_query($sql_room);
         $sql_report .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
         $sql_report .= " WHERE startday >= '".$startday."' ";
         $sql_report .= " AND endday <= '".$endday."'  ";
+        $sql_report .= " AND id_status_reserv='2' ";
         $sql_report .= " GROUP BY r.name_room";
         $result_report = mysql_query($sql_report);
         $num_report = mysql_num_rows($result_report);
@@ -78,12 +79,18 @@ $result_room = mysql_query($sql_room);
             echo "<td width='10%'>นาที</td>";
             echo "</tr>";
             while($row_report = mysql_fetch_array($result_report))
-            {             
+            {   
+                $sumhours = $row_report['sumhours'];
+                $summinute = $row_report['summinute'];
+                if($summinute >= $summinute/(60*60))
+                {
+                    $sumhours = $sumhours+$sumhours;
+                }
                 echo "<tr'>";
                 echo "<td>".$row_report['nameroom']."</td>";
                 echo "<td align='center'>".number_format($row_report['sumtotal'],0)."</td>";
-                echo "<td align='center'>".number_format($row_report['sumhours'],0)."</td>";
-                echo "<td align='center'>".number_format($row_report['summinute'],0)."</td>";
+                echo "<td align='center'>".number_format($sumhours,0)."</td>";
+                echo "<td align='center'>".number_format($summinute,0)."</td>";
                 echo "</tr>";
                 //Sum//
                 $sum_total = @$sum_total+$row_report['sumtotal'];
@@ -119,7 +126,8 @@ $result_room = mysql_query($sql_room);
         $sql_year .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
         $sql_year .= " FROM reserv AS rs";
         $sql_year .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
-        $sql_year .= " WHERE YEAR(startday) ='".$txt_year."' OR YEAR(endday)='".$txt_year."'";
+        $sql_year .= " WHERE (YEAR(startday) ='".$txt_year."' OR YEAR(endday)='".$txt_year."')";
+        //$sql_year .= " AND id_status_reserv='2'";
         $sql_year .= " GROUP BY r.name_room";
         $result_reportYear = mysql_query($sql_year);
         $num_reportYear = mysql_num_rows($result_reportYear);
@@ -146,7 +154,7 @@ $result_room = mysql_query($sql_room);
                 echo "<td width='10%'>ชั่วโมง</td>";
                 echo "<td width='10%'>นาที</td>";
                 echo "</tr>";
-                while($row_reportYear = mysql_fetch_array($result_reportYear)){
+                while($row_reportYear = mysql_fetch_array($result_reportYear)){             
                     echo "<tr>";
                     echo "<td>".$row_reportYear['nameroom']."</td>";
                     echo "<td align='center'>".number_format($row_reportYear['sumtotal'],0)."</td>";
@@ -191,6 +199,7 @@ $result_room = mysql_query($sql_room);
         $Sql_report_Month .= " INNER JOIN room as r ON(r.id_room = rs.id_room)";
         $Sql_report_Month .= " WHERE YEAR(startday) ='".$str_year."' AND MONTH(startday) ='".$str_month."'";
         $Sql_report_Month .= " AND YEAR(endday) = '".$str_year."' AND MONTH(endday) ='".$str_month."'";
+        $Sql_report_Month .= " AND id_status_reserv='2' ";
         $Sql_report_Month .= " GROUP BY r.name_room";
         $result_report_Month = mysql_query($Sql_report_Month);
         $num_report_Month = mysql_num_rows($result_report_Month);
