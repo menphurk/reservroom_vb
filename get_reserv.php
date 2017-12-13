@@ -53,7 +53,7 @@ if(isset($_POST['get_dataReserv']))
             <th width="15%">ห้องประชุม</th>
             <th width="10%">วันที่-เวลาจอง</th>
             <th width="10%">วันที่-เวลาสิ้นสุด</th>
-            <th width="8%">ชื่อผู้จอง</th>
+            <th width="10%">ชื่อผู้จอง</th>
             <th width="8%" align="center">&nbsp;</th>
         </tr>
     <?php
@@ -64,6 +64,7 @@ if(isset($_POST['get_dataReserv']))
     $get_reserv = " SELECT * FROM reserv as rs";
     $get_reserv .= " LEFT JOIN room as r on(r.id_room = rs.id_room)";
     $get_reserv .= " JOIN users as u on(u.id_user = rs.update_id)";
+    $get_reserv .= " JOIN title as t on(t.title_id = u.title_id)";
     if($str_search && $str_search_con != "")
     {
         $get_reserv .= " WHERE $str_search_con LIKE '%".$str_search."%'";
@@ -132,7 +133,7 @@ if(isset($_POST['get_dataReserv']))
 
             echo "<td>".$new_convertstartevent."<br>".substr($row_event['starttime'],0,-3)."&nbsp;น.</td>";
             echo "<td>".$new_convertendevent."<br>".substr($row_event['endtime'],0,-3)."&nbsp;น.</td>";
-            echo "<td>".$row_event['name_log']."</td>";
+            echo "<td>".$row_event['title_name']."&nbsp;".$row_event['name_log']."</td>";
             echo "<td>";
             echo "<center><button class=\"btn btn-app btn-info btn-xs\" onclick=\"javascript:window.location.href='show_reserv.php?id_reserv=$row_event[id_reserv]'\">
             <i class=\"ace-icon fa fa-info bigger-120\"></i>ดูข้อมูล</button></center>";

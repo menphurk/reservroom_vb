@@ -33,11 +33,11 @@
                             <h1>รายการจองประชุม</h1>
                         </div>
                             <!-- PAGE CONTENT BEGINS -->
-                            <ul class="nav nav-tabs" id="myTabs" role="tablist"> 
-                                
+                            <ul class="nav nav-tabs" id="myTabs" role="tablist">
+
                                 <li role="presentation" class="active">
-                                    <a href="#event_today" id="event_today-tab" role="tab" data-toggle="tab" aria-controls="event_today" aria-expanded="false"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;รายการจองวันนี้</a>
-                                </li>
+                                    <a href="#event_today" id="event_today-tab" role="tab" data-toggle="tab" aria-controls="event_today" aria-expanded="false"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i>&nbsp;รายการจองวันนี้</a>
+                                </li>                                 
                                 <li role="presentation" class="">
                                     <a href="#event_list" id="event_list-tab" role="tab" data-toggle="tab" aria-controls="event_list" aria-expanded="false"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;ข้อมูลแบบปฏิทิน</a>
                                 </li> 

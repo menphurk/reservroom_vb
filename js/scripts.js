@@ -1,4 +1,20 @@
 ﻿$(function(){
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        // TODO: check href of e.target to detect your tab
+        $('#calendar').fullCalendar('render');
+    });
+
+    $('#show_time').tabs({
+        activate: function() {
+            $('#calendar').fullCalendar('render');
+        }
+    });
+
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -30,17 +46,17 @@
         eventLimit:false,
     });
     //Menu Active
-    $('.active > a').click(function(){
-        $('.active').removeClass('active');
-        $(this).addClass('active');
-    });
+    // $('.active > a').click(function(){
+    //     $('.active').removeClass('active');
+    //     $(this).addClass('active');
+    // });
     
-    $('.submenu > li').click(function(){
-        $('.active').removeClass('active');
-        $(this).addClass('active');
-        $(this).parent('ul').prev('a').addClass('active');
+    // $('.submenu > li').click(function(){
+    //     $('.active').removeClass('active');
+    //     $(this).addClass('active');
+    //     $(this).parent('ul').prev('a').addClass('active');
         
-    });
+    // });
 
     $("#btn_login").click(function(){
         var username = $("#username_log").val();
@@ -619,7 +635,7 @@
 
         $("#comment_reserv").html(txt_reserv);
     });
-
+    
 });
 window.onload = load_data(1,'','');
 window.onload = load_member(1,'','');
@@ -1042,3 +1058,15 @@ function room_delete(id_room)
     }
 }
 
+setInterval(function(){ // เขียนฟังก์ชัน javascript ให้ทำงานทุก ๆ 30 วินาที
+    // 1 วินาที่ เท่า 1000
+    // คำสั่งที่ต้องการให้ทำงาน ทุก ๆ 3 วินาที
+    var getData=$.ajax({ // ใช้ ajax ด้วย jQuery ดึงข้อมูลจากฐานข้อมูล
+            url:"g_date.php",
+            data:"rev=1",
+            async:false,
+            success:function(getData){
+                $("#showData").html(getData); // ส่วนที่ 3 นำข้อมูลมาแสดง
+            }
+    }).responseText;
+},1000);

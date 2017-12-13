@@ -5,9 +5,9 @@
         <!--JS-->
         <script src="js/jquery.js?rev=<?php echo time();?>"></script>
 		<script src="js/scripts.js?rev=<?php echo time();?>"></script>
-		<script src="js/Func_time.js?rev=<?php echo time();?>"></script>
+		<script src="js/date_time.js?rev=<?php echo time();?>"></script>
         <script src="js/bootstrap.min.js?rev=<?php echo time();?>"></script>  
-		<script src="js/moment.min.js?rev=<?php echo time();?>"></script>
+		<script src="js/moment.js?rev=<?php echo time();?>"></script>
         <script src="js/fullcalendar.js?rev=<?php echo time();?>"></script>
 		<script src="js/th.js?rev=<?php echo time();?>"></script>
 		<script src="js/jquery-ui.js?rev=<?php echo time();?>"></script>

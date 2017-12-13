@@ -177,6 +177,7 @@
         $role = mysql_real_escape_string($_POST['role']);
         $ch_data_user = "INSERT INTO `users`(`id_user`, `username_log`, `password_log`,`title_id`, `name_log`, `email_log`, `create_date`, `id_group_users`, `id_role`) 
         VALUES (NULL,'".$username."','".$password."','".$title."','".$name."','".$email."','".$create_date."','".$group."','".$role."')";
+         // echo $ch_data_user;
         $result_data_user = mysql_query($ch_data_user);
         if($result_data_user == 1)
         {
@@ -370,7 +371,7 @@
     if(isset($_REQUEST['id_reserv']))
     {
         $id_reserv = mysql_real_escape_string($_POST['id_reserv']);
-        $check_reserv = "UPDATE reserv SET status_reserv = '2' where id_reserv='".$id_reserv."'";
+        $check_reserv = "UPDATE reserv SET id_status_reserv = '2' where id_reserv='".$id_reserv."'";
         $result_reserv = mysql_query($check_reserv);
         if($result_reserv)
         {

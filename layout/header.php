@@ -6,7 +6,7 @@
         <!---CSS-->
         <link href="css/bootstrap.css?rev=<?php echo time();?>" rel="stylesheet" media="screen">
         <link href="css/style.css?rev=<?php echo time();?>" rel="stylesheet" media="all">
-        <link href="css/fullcalendar.min.css?rev=<?php echo time();?>" rel="stylesheet">
+        <link href="css/fullcalendar.css?rev=<?php echo time();?>" rel="stylesheet">
         <link href="css/fullcalendar.print.css?rev=<?php echo time();?>" rel="stylesheet" media="print">
 		<link href="css/ace.css?rev=<?php echo time();?>" class="ace-main-stylesheet" id="main-ace-style" rel="stylesheet">
 		<!--[if lte IE 9]>
