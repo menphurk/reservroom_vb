@@ -14,9 +14,10 @@
 		<![endif]-->
         <!--FONTAWESOME-->
         <link href="css/font-awesome.css?rev=<?php echo time();?>" rel="stylesheet">
-
         <!--JQUERY UI-->
         <link href="css/jquery-ui.css?rev=<?php echo time();?>" rel="stylesheet">
+        <!--Gritter-->
+        <link href="css/jquery.gritter.css?rev=<?php echo time();?>" rel="stylesheet">
     </head>
 <body class="no-skin">
 

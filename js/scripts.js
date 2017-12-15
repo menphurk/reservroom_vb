@@ -1117,12 +1117,26 @@ setInterval(function(){ // เขียนฟังก์ชัน javascript �
     }).responseText;
 },1000);
 
-// $("#bootbox-regular").on(ace.click_event, function() {
-//     bootbox.prompt("What is your name?", function(result) {
-//         if (result === null) {
-            
-//         } else {
-            
-//         }
-//     });
-// });
+setInterval(function(){
+    $.ajax({
+        url: "get_nofication.php",
+        data: "",
+        async:false,
+        success: function(get_nofication)
+        {
+        var obj = jQuery.parseJSON(get_nofication);
+            if(obj != '')
+            {
+                $.each(obj, function(key, val) {
+                    $.gritter.add({
+					title: val['id_reserv']+"::"+val['topic'],
+					text: val['desc'],
+					class_name: 'gritter-success'
+                    });
+
+                return false;
+                });
+            }
+        }
+    });
+},10000);
