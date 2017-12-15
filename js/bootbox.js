@@ -650,6 +650,7 @@
       }
     });
     */
+    
 
     dialog.on("shown.bs.modal", function() {
       dialog.find(".btn-primary:first").focus();

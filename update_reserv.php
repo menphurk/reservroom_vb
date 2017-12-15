@@ -77,8 +77,6 @@ if(isset($_GET['id_reserv']))
     $check_reserv .= ",`txt_mic`='".$str_txt_mic."' ";
     $check_reserv .= ",`check_other`='".$str_check_other."' ";
     $check_reserv .= ",`txt_other`='".$str_txt_other."' ";
-    //$check_reserv .= ",	id_status_reserv ='".$str_status_reserv."' ";
-    $check_reserv .= ", comment_reserv ='".$str_comment_reserv."'";
     $check_reserv .= ",`update_id`='".$str_update_id."' ";
     $check_reserv .= " WHERE id_reserv='".$id_reserv."'";
     $result_reserv = mysql_query($check_reserv);

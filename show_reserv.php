@@ -244,54 +244,124 @@
             </strong>
             </p>
             <p>&nbsp;</p>
-            <?php
-            if($rowEdit_reserv['id_status_reserv'] == '3')
-            {
-                $disabled = "disabled";
-            }else
-            {
-                $disabled = "";
-            }
-            ?>
             <center>
             <?php 
-                if($rowEdit_reserv['id_user'] != $_SESSION['login'][0])
+                // if($rowEdit_reserv['id_user'] != $_SESSION['login'][0])
+                // {
+                //     $disabled_btn_del = "disabled";
+                // }else
+                // {
+                //     $disabled_btn_del = "";
+                // }
+                if($rowEdit_reserv['id_user'] != $_SESSION['login'][0] || $rowEdit_reserv['id_status_reserv'] == 3)
                 {
-                    $disabled_btnEditAnddel = "disabled";
+                    $disabled_btn_edit = "disabled";
                 }else
                 {
-                    $disabled_btnEditAnddel = "";
+                    $disabled_btn_edit = "";
                 }
             ?>
-            <button class="btn btn-app btn-yellow btn-xs" <?php echo $disabled_btnEditAnddel;?> onclick="javascript:window.location.href='edit_reserv.php?id_reserv=<?php echo $_SESSION['reserv'];?>'"><i class="ace-icon fa fa-pencil bigger-160"></i>แก้ไข</button>
-            <button class="btn btn-app btn-danger btn-xs" <?php echo $disabled_btnEditAnddel;?> onclick="remove_reserv('<?php echo $_SESSION['reserv'];?>')"><i class="ace-icon fa fa-trash-o bigger-200"></i>ลบ</button>
-            <?php if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1){
-                $confirm_status = array($rowEdit_reserv['id_status_reserv']);
-                if(in_array('1',$confirm_status))
+            <button class="btn btn-app btn-yellow btn-xs" <?php echo $disabled_btn_edit;?> onclick="javascript:window.location.href='edit_reserv.php?id_reserv=<?php echo $_SESSION['reserv'];?>'"><i class="ace-icon fa fa-pencil bigger-160"></i>แก้ไข</button>
+            <!-- <button class="btn btn-app btn-danger btn-xs" <?php echo $disabled_btn_del;?> onclick="remove_reserv('<?php echo $_SESSION['reserv'];?>')"><i class="ace-icon fa fa-trash-o bigger-200"></i>ลบ</button> -->
+            <?php 
+            $confirm_status = $rowEdit_reserv['id_status_reserv'];
+            if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1){
+                if($rowEdit_reserv['id_status_reserv'] == 1)
                 {
-                    $btn_color = "sucess";
+                    $btn_color = "success";
                     $icon_ = "check";
                     $btn_text = "อนุมัติ";
                     $btn_click = "confirm_reserv";
+                    $btn_id = "";
+                    $disabled = "";            
                 }
-                if(in_array('2',$confirm_status))
+                if($rowEdit_reserv['id_status_reserv'] == 2)
                 {
                     $btn_color = "danger";
                     $icon_ = "times";
                     $btn_text = "ยกเลิก";
                     $btn_click = "cancle_reserv";
                     $btn_id = "bootbox-regular";
+                    $disabled = "";
                 }
-                if(in_array('3',$confirm_status))
+                if($rowEdit_reserv['id_status_reserv'] == 3)
                 {
                     $btn_color = "danger";
                     $icon_ = "times";
                     $btn_text = "ยกเลิก";
-                    $btn_click = "cancle_reserv";                    
+                    $btn_click = "cancle_reserv";  
+                    $btn_id = "";     
+                    $disabled = "";             
                 }
+            }
+            if($_SESSION['login'][3] == 3)
+            {
+                if($rowEdit_reserv['id_status_reserv'] == 1)
+                {
+                    $btn_color = "success";
+                    $icon_ = "check";
+                    $btn_text = "อนุมัติ";
+                    $btn_click = "confirm_reserv";
+                    $btn_id = "";
+                    $disabled = "disabled";
+                }
+                if($rowEdit_reserv['id_status_reserv'] == 2)
+                {
+                    $btn_color = "danger";
+                    $icon_ = "times";
+                    $btn_text = "ยกเลิก";
+                    $btn_click = "cancle_reserv";
+                    $btn_id = "bootbox-regular";
+                    $disabled = "";
+                }
+                if($rowEdit_reserv['id_status_reserv'] == 3)
+                {
+                    $btn_color = "danger";
+                    $icon_ = "times";
+                    $btn_text = "ยกเลิก";
+                    $btn_click = "cancle_reserv";  
+                    $btn_id = "";
+                    $disabled = "disabled";
+                }       
+            }
             ?>
+
             <button class="btn btn-app btn-<?php echo $btn_color;?> btn-xs" id="<?php echo $btn_id;?>" <?php echo $disabled;?> onclick="<?php echo $btn_click;?>('<?php echo $_SESSION['reserv'];?>',<?php echo $confirm_status[0];?>)"><i class="ace-icon fa fa-<?php echo $icon_;?> bigger-200"></i><?php echo $btn_text;?></button>
-            <?php } ?>
+            
+            <input type="hidden" name="id_reserv" id="id_reserv" value="<?php echo $rowEdit_reserv['id_reserv'];?>">
+            <input type="hidden" name="startday" id="startday" value="<?php echo $rowEdit_reserv['startday'];?>">
+            <input type="hidden" name="endday" id="endday" value="<?php echo $rowEdit_reserv['endday'];?>">
+            <input type="hidden" name="starttime" id="starttime" value="<?php echo $rowEdit_reserv['starttime'];?>">
+            <input type="hidden" name="endtime" id="endtime" value="<?php echo $rowEdit_reserv['endtime'];?>">
+            <input type="hidden" name="id_room" id="id_room" value="<?php echo $rowEdit_reserv['id_room'];?>">
+            <input type="hidden" name="id_type" id="id_type" value="<?php echo $rowEdit_reserv['id_type'];?>">
+            <input type="hidden" name="topic" id="topic" value="<?php echo $rowEdit_reserv['topic'];?>">
+            <input type="hidden" name="desc" id="desc" value="<?php echo $rowEdit_reserv['desc'];?>">
+            <input type="hidden" name="num" id="num" value="<?php echo $rowEdit_reserv['num'];?>">
+            <input type="hidden" name="namejoin" id="namejoin" value="<?php echo $rowEdit_reserv['namejoin'];?>">
+            <input type="hidden" name="tel" id="tel" value="<?php echo $rowEdit_reserv['tel'];?>">
+            <input type="hidden" name="check_catering" id="check_catering" value="<?php echo $rowEdit_reserv['check_catering'];?>">
+            <input type="hidden" name="txt_catering2" id="txt_catering2" value="<?php echo $rowEdit_reserv['txt_catering2'];?>">
+            <input type="hidden" name="txt_cateringother" id="txt_cateringother" value="<?php echo $rowEdit_reserv['txt_cateringother'];?>">
+            <input type="hidden" name="check_projector" id="check_projector" value="<?php echo $rowEdit_reserv['check_projector'];?>">
+            <input type="hidden" name="check_screen" id="check_screen" value="<?php echo $rowEdit_reserv['check_screen'];?>">
+            <input type="hidden" name="check_dvd" id="check_dvd" value="<?php echo $rowEdit_reserv['check_dvd'];?>">
+            <input type="hidden" name="check_tv" id="check_tv" value="<?php echo $rowEdit_reserv['check_tv'];?>">
+            <input type="hidden" name="check_record" id="check_record" value="<?php echo $rowEdit_reserv['check_record'];?>">
+            <input type="hidden" name="check_amp" id="check_amp" value="<?php echo $rowEdit_reserv['check_amp'];?>">
+            <input type="hidden" name="check_control" id="check_control" value="<?php echo $rowEdit_reserv['check_control'];?>">
+            <input type="hidden" name="txt_control" id="txt_control" value="<?php echo $rowEdit_reserv['txt_control'];?>">
+            <input type="hidden" name="check_wireless_mic" id="check_wireless_mic" value="<?php echo $rowEdit_reserv['check_wireless_mic'];?>">
+            <input type="hidden" name="txt_wireless_mic" id="txt_wireless_mic" value="<?php echo $rowEdit_reserv['txt_wireless_mic'];?>">
+            <input type="hidden" name="check_mic" id="check_mic" value="<?php echo $rowEdit_reserv['check_mic'];?>">
+            <input type="hidden" name="txt_mic" id="txt_mic" value="<?php echo $rowEdit_reserv['txt_mic'];?>">
+            <input type="hidden" name="check_other" id="check_other" value="<?php echo $rowEdit_reserv['check_other'];?>">
+            <input type="hidden" name="id_status_reserv" id="id_status_reserv" value="<?php echo $rowEdit_reserv['id_status_reserv'];?>">
+            <input type="hidden" name="comment_reserv" id="comment_reserv" value="<?php echo $rowEdit_reserv['comment_reserv'];?>">
+            <input type="hidden" name="txt_other" id="txt_other" value="<?php echo $rowEdit_reserv['txt_other'];?>">
+            <input type="hidden" name="table_room" id="table_room" value="<?php echo $rowEdit_reserv['table_room'];?>">
+
+
             <button class="btn btn-app btn-pink btn-xs" onclick="window.location.href='export_pdf.php?uidReserv=<?php echo $_SESSION['reserv'];?>&key=<?php echo $token;?>'"><i class="ace-icon fa fa-file-pdf-o bigger-160"></i>Export</button>
             </center>
         </div>

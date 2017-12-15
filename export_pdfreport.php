@@ -105,12 +105,17 @@ $thai_month_arr=array(
     {
         $str_year = mysql_real_escape_string($_GET['st_year']);
 
+        $str_startday = ($str_year-1)."-10-01";
+        $str_endday = $str_year."-09-30";
+        //SQL_REPORT//
         $sql_year = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,";
         $sql_year .= " SUM(TIMEDIFF(HOUR(endtime),HOUR(starttime))) AS sumhours,";
         $sql_year .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
         $sql_year .= " FROM reserv AS rs";
         $sql_year .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
-        $sql_year .= " WHERE YEAR(startday) ='".$str_year."' OR YEAR(endday)='".$str_year."'";
+        $sql_year .= " WHERE id_status_reserv='2' ";
+        $sql_year .= " AND startday >= '$str_startday' AND startday <= '$str_endday' ";
+        $sql_year .= " AND endday >= '$str_startday' AND endday <='$str_endday' ";
         $sql_year .= " GROUP BY r.name_room";
         $result_reportYear = mysql_query($sql_year);
 

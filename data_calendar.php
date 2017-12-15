@@ -55,6 +55,7 @@ if ($result_calendar = mysql_query($get_calendar)) {
             'name' => $obj_calendar['title_name']." ".$obj_calendar['name_log'],
             "allDay"=> false
      );
+
     }
     echo json_encode($data_event);
 }

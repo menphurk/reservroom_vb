@@ -97,9 +97,11 @@ if(isset($_POST['get_dataReserv']))
         $num_pages = (int)$num_pages;
     }
     $get_reserv .= " ORDER BY id_reserv ASC LIMIT $start_page,$per_page";
+    
     $result_event = mysql_query($get_reserv);
         while($row_event = mysql_fetch_array($result_event))
         {
+
             echo "<tr id='pagination_reserv'>";
             echo "<td>".$row_event['id_reserv']."</td>";
             echo "<td>";

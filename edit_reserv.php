@@ -49,38 +49,6 @@
 </div>
 <div class="panel-body">
     <form action="update_reserv.php?id_reserv=<?php echo $_GET['id_reserv'];?>" method="post" class="form-horizontal">
-    <?php 
-    if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1)
-    {
-    ?>
-        <!-- <p class="text-right"><strong>สถานะการจอง : </strong>
-            <select name="status_reserv" id="status_reserv">
-            <?php
-                $sql_statusReserv = "SELECT * FROM status_reserv";
-                $query_statusReserv = mysql_query($sql_statusReserv);
-                while($row_statusReserv = mysql_fetch_array($query_statusReserv))
-                {
-                    if($row_statusReserv['id'] == $row_reserv_edit['id_status_reserv'])
-                    {
-                        $selected_status = "selected";
-                    }else
-                    {
-                        $selected_status = "";
-                    }
-                //echo "<option value='$row_statusReserv[id]' $selected_status>$row_statusReserv[name_reserv]</option>";
-                }
-            ?>
-            </select>
-            
-        </p>
-        <p class="text-right"><span id="comment_reserv">
-        <?php
-        if($row_reserv_edit['id_status_reserv'] == 3)
-        {
-            echo "หมายเหตุ : <input type='text' id='comment_reserv' name='comment_reserv' value='$row_reserv_edit[comment_reserv]'>";
-        }
-        ?>
-        </span></p> -->
     <?php
     }
     ?>
@@ -242,7 +210,7 @@ function create_time_range($start, $end, $interval = '30 mins', $format = '24')
     $times[] = date($returnTimeFormat, $startTime); 
         return $times; 
 }
- $times = create_time_range('08:30', '16:30', '15 mins');
+ $times = create_time_range('06:00', '16:30', '15 mins');
 ?>
     <div class="form-group">
         <label for="starttime" class="col-sm-1 control-label">เวลาจอง :</label>
@@ -618,6 +586,6 @@ function create_time_range($start, $end, $interval = '30 mins', $format = '24')
     </div>         
 </div>
 </div>
-<?php } 
+<?php 
 include_once('layout/footer.php');
 ?>

@@ -377,12 +377,12 @@
             if($status == '1')
             {
                 $check_reserv .= "id_status_reserv = '2' ";
+                $check_reserv .= "where id_reserv='".$id_reserv."'";
             }else if($status == '2')
             {
                 $check_reserv .= "id_status_reserv = '3', ";
                 $check_reserv .= "comment_reserv = '".$comment_reserv."' ";
             }
-            $check_reserv .= "where id_reserv='".$id_reserv."'";
             $result_reserv = mysql_query($check_reserv);
             if($result_reserv)
             {

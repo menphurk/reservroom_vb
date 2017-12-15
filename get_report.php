@@ -119,15 +119,17 @@ $result_room = mysql_query($sql_room);
         //SES_YEAR//
         $_SESSION['str_year'] = $txt_year;
         //---------//
-
+        $str_startday = ($txt_year-1)."-10-01";
+        $str_endday = $txt_year."-09-30";
         //SQL_REPORT//
         $sql_year = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,";
         $sql_year .= " SUM(TIMEDIFF(HOUR(endtime),HOUR(starttime))) AS sumhours,";
         $sql_year .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
         $sql_year .= " FROM reserv AS rs";
         $sql_year .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
-        $sql_year .= " WHERE (YEAR(startday) ='".$txt_year."' OR YEAR(endday)='".$txt_year."')";
-        //$sql_year .= " AND id_status_reserv='2'";
+        $sql_year .= " WHERE id_status_reserv='2' ";
+        $sql_year .= " AND startday >= '$str_startday' AND startday <= '$str_endday' ";
+        $sql_year .= " AND endday >= '$str_startday' AND endday <='$str_endday' ";
         $sql_year .= " GROUP BY r.name_room";
         $result_reportYear = mysql_query($sql_year);
         $num_reportYear = mysql_num_rows($result_reportYear);
