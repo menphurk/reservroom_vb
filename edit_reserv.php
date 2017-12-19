@@ -192,25 +192,26 @@
         </div>            
     </div>
 <?php
-function create_time_range($start, $end, $interval = '30 mins', $format = '24') 
-{
-    $startTime = strtotime($start); 
-    $endTime   = strtotime($end);
-    $returnTimeFormat = ($format == '12')?'g:i':'G:i';
+function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) {
+    $times = array();
 
-    $current   = time(); 
-    $addTime   = strtotime('+'.$interval, $current); 
-    $diff      = $addTime - $current;
+    if ( empty( $format ) ) {
+        $format = 'G:i';
+    }
 
-    $times = array(); 
-    while ($startTime < $endTime) { 
-    $times[] = date($returnTimeFormat, $startTime); 
-    $startTime += $diff; 
-    } 
-    $times[] = date($returnTimeFormat, $startTime); 
-        return $times; 
+    foreach ( range( $lower, $upper, $step ) as $increment ) {
+        $increment = gmdate( 'H:i', $increment );
+
+        list( $hour, $minutes ) = explode( ':', $increment );
+
+        $date = new DateTime( $hour . ':' . $minutes );
+
+        $times[(string) $increment] = $date->format( $format );
+    }
+
+    return $times;
 }
- $times = create_time_range('06:00', '16:30', '15 mins');
+     $times = hoursRange(21600, 63000, 60 * 15, 'H:i');
 ?>
     <div class="form-group">
         <label for="starttime" class="col-sm-1 control-label">เวลาจอง :</label>

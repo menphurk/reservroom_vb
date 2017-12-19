@@ -1117,26 +1117,34 @@ setInterval(function(){ // เขียนฟังก์ชัน javascript �
     }).responseText;
 },1000);
 
-setInterval(function(){
-    $.ajax({
-        url: "get_nofication.php",
-        data: "",
-        async:false,
-        success: function(get_nofication)
-        {
-        var obj = jQuery.parseJSON(get_nofication);
-            if(obj != '')
-            {
-                $.each(obj, function(key, val) {
-                    $.gritter.add({
-					title: val['id_reserv']+"::"+val['topic'],
-					text: val['desc'],
-					class_name: 'gritter-success'
-                    });
+// setInterval(function(){
+//     $.ajax({
+//         url: "get_nofication.php",
+//         data: "",
+//         async:false,
+//         success: function(get_nofication)
+//         {
+//         var obj = jQuery.parseJSON(get_nofication);
+//             if(obj != '')
+//             {
+//                 $.each(obj, function(key, val) {
+//                     $.gritter.add({
+// 					title: val['id_reserv']+"::"+val['topic'],
+// 					text: val['desc'],
+// 					class_name: 'gritter-success'
+//                     });
 
-                return false;
-                });
-            }
-        }
-    });
-},10000);
+//                 return false;
+//                 });
+//             }
+//         }
+//     });
+// },10000);
+
+$("#table_reserv").change(function(){
+    var table_reserv = $(this).val();
+    if(table_reserv == "U")
+    {
+        $("#show_table").addClass('square');
+    } 
+});

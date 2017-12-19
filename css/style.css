@@ -121,3 +121,13 @@
      display: block;
   }
 }
+
+.square {
+  
+  width: 140px; 
+  
+  height: 140px; 
+  
+  background: blue; 
+  
+  }
