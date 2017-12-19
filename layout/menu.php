@@ -55,7 +55,12 @@
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-
+                <li>
+									<a href="history.php?id_user=<?php echo $_SESSION['login'][0];?>">
+										<i class="ace-icon fa fa-history"></i>
+										ประวัติการจอง
+									</a>
+								</li>
 								<li>
 									<a href="profile.php?id_user=<?php echo $_SESSION['login'][0];?>">
 										<i class="ace-icon fa fa-user"></i>

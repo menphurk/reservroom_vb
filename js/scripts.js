@@ -650,6 +650,7 @@
 window.onload = load_data(1,'','');
 window.onload = load_member(1,'','');
 window.onload = load_today(1,'','');
+window.onload = load_history(1,'','');
 function load_data(page,txt_searchevent,dataReserv_condition)
 {
     if(txt_searchevent != "")
@@ -706,6 +707,27 @@ function load_today()
         {
             $("#data_today").html(ch_data_today);
         }
+    });
+}
+function load_history(page,txt_searchevent,dataReserv_condition)
+{
+    if(txt_searchevent != "")
+    {
+        var txt_searchevent = $("#txt_searchreserv").val();
+        var data_condition = $("#dataReserv_condition").val();
+    }
+    $.ajax({
+        type: "POST",
+        url: "get_history.php",
+        data: "data_condition="+data_condition+"&search_reserv="+txt_searchevent+"&page="+page+"&get_dataReserv=1",
+        beforeSend: function()
+        {
+            $("#data_history").html("Loading...");
+        },
+        success: function(res_data_reserv)
+        {
+            $("#data_history").html(res_data_reserv);
+        },
     });
 }
 function change_member()
