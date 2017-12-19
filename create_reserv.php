@@ -384,7 +384,7 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
                     </div>                    
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="" class="col-sm-2 control-label">รูปแบบการจัดห้องประชุม :</label>
                 <div class="col-sm-2">
                     <select class="form-control" name="table_reserv" id="table_reserv">
@@ -396,7 +396,7 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
                     </select>
                     <div id="show_table" class=""></div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-10">
