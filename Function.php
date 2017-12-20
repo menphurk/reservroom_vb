@@ -8,4 +8,13 @@ function duration($remain){
     $second=$l_hour%60;
     return "ผ่านมาแล้ว ".$wan." วัน ".$hour." ชั่วโมง ".$minute." นาที ".$second." วินาที";
 }
+
+function HoursDiff($strTime1,$strTime2)
+{
+           return (strtotime($strTime2) - strtotime($strTime1))/( 60 * 60 );
+}
+function MinuteDiff($strTime1,$strTime2)
+{
+           return Floor(strtotime($strTime2) - strtotime($strTime1))/60;
+}
 ?>

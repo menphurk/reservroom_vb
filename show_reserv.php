@@ -291,7 +291,7 @@
                     $btn_text = "ยกเลิก";
                     $btn_click = "cancle_reserv";  
                     $btn_id = "";     
-                    $disabled = "";             
+                    $disabled = "disabled";             
                 }
             }
             if($_SESSION['login'][3] == 3)

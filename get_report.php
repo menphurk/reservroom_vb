@@ -1,6 +1,6 @@
 <?php session_start();
 include_once("include/Conn.php");
-// include_once("Function.php");
+include_once("Function.php");
 //THAIDATE
 $thai_month_arr=array(
     "00"=>"",
@@ -36,7 +36,7 @@ $result_room = mysql_query($sql_room);
         $sql_report .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
         $sql_report .= " FROM reserv AS rs";
         $sql_report .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
-        $sql_report .= " WHERE startday >= '".$startday."' ";
+        $sql_report .= " AND startday >= '".$startday."' ";
         $sql_report .= " AND endday <= '".$endday."'  ";
         $sql_report .= " AND id_status_reserv='2' ";
         $sql_report .= " GROUP BY r.name_room";
@@ -120,9 +120,9 @@ $result_room = mysql_query($sql_room);
         $str_startday = ($txt_year-1)."-10-01";
         $str_endday = $txt_year."-09-30";
         //SQL_REPORT//
-        $sql_year = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,";
+        $sql_year = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,endtime,starttime,";
         $sql_year .= " SUM(TIMEDIFF(HOUR(endtime),HOUR(starttime))) AS sumhours,";
-        $sql_year .= " SUM(TIMEDIFF(MINUTE(starttime),MINUTE(endtime))) AS summinute";
+        $sql_year .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
         $sql_year .= " FROM reserv AS rs";
         $sql_year .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
         $sql_year .= " WHERE id_status_reserv='2' ";
@@ -130,9 +130,7 @@ $result_room = mysql_query($sql_room);
         $sql_year .= " AND endday >= '$str_startday' AND endday <='$str_endday' ";
         $sql_year .= " GROUP BY r.name_room";
         $result_reportYear = mysql_query($sql_year);
-        echo $sql_year;
         $num_reportYear = mysql_num_rows($result_reportYear);
-
         if($num_reportYear == 0)
         {
             echo "No Data Report";
@@ -155,17 +153,20 @@ $result_room = mysql_query($sql_room);
                 echo "<td width='10%'>ชั่วโมง</td>";
                 echo "<td width='10%'>นาที</td>";
                 echo "</tr>";
-                while($row_reportYear = mysql_fetch_array($result_reportYear)){             
+                while($row_reportYear = mysql_fetch_array($result_reportYear)){
+                    $hours = HoursDiff($row_reportYear['starttime'],$row_reportYear['endtime']);
+                    $minute = MinuteDiff($row_reportYear['starttime'],$row_reportYear['endtime']);
                     echo "<tr>";
                     echo "<td>".$row_reportYear['nameroom']."</td>";
                     echo "<td align='center'>".number_format($row_reportYear['sumtotal'],0)."</td>";
-                    echo "<td align='center'>".number_format($row_reportYear['sumhours'],0)."</td>";
-                    echo "<td align='center'>".number_format($row_reportYear['summinute'],0)."</td>";
+                    echo "<td align='center'>".number_format($hours,0)."</td>";
+                    echo "<td align='center'>".number_format($minute,0)."</td>";
                     echo "</tr>";
+
                     //Sum//
                     $sum_total = @$sum_total+$row_reportYear['sumtotal'];
-                    $sum_hours = @$sum_hours+$row_reportYear['sumhours'];
-                    $sum_minute = @$sum_minute+$row_reportYear['summinute'];
+                    $sum_hours = @$sum_hours+$hours;
+                    $sum_minute = @$sum_minute+$minute;
                     //Sum//
                 }
                 echo "<tr class='active' align='center'>";
@@ -198,7 +199,8 @@ $result_room = mysql_query($sql_room);
         $Sql_report_Month .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
         $Sql_report_Month .= " FROM reserv AS rs";
         $Sql_report_Month .= " INNER JOIN room as r ON(r.id_room = rs.id_room)";
-        $Sql_report_Month .= " WHERE YEAR(startday) ='".$str_year."' AND MONTH(startday) ='".$str_month."'";
+        $Sql_report_Month .= " WHERE id_status_reserv='2' ";
+        $Sql_report_Month .= " AND YEAR(startday) ='".$str_year."' AND MONTH(startday) ='".$str_month."'";
         $Sql_report_Month .= " AND YEAR(endday) = '".$str_year."' AND MONTH(endday) ='".$str_month."'";
         $Sql_report_Month .= " AND id_status_reserv='2' ";
         $Sql_report_Month .= " GROUP BY r.name_room";

@@ -647,10 +647,10 @@
     });
     
 });
-window.onload = load_data(1,'','');
+window.onload = load_data('','','');
 window.onload = load_member(1,'','');
 window.onload = load_today(1,'','');
-window.onload = load_history(1,'','');
+window.onload = load_history('','','');
 function load_data(page,txt_searchevent,dataReserv_condition)
 {
     if(txt_searchevent != "")
@@ -719,14 +719,14 @@ function load_history(page,txt_searchevent,dataReserv_condition)
     $.ajax({
         type: "POST",
         url: "get_history.php",
-        data: "data_condition="+data_condition+"&search_reserv="+txt_searchevent+"&page="+page+"&get_dataReserv=1",
+        data: "data_condition="+data_condition+"&search_reserv="+txt_searchevent+"&page="+page+"&get_dataHistory=1",
         beforeSend: function()
         {
             $("#data_history").html("Loading...");
         },
-        success: function(res_data_reserv)
+        success: function(res_data_history)
         {
-            $("#data_history").html(res_data_reserv);
+            $("#data_history").html(res_data_history);
         },
     });
 }
@@ -830,7 +830,7 @@ function confirm_reserv(id_reserv,status)
                 if(res_confirm == 1)
                 {
                     alert("ยืนยันข้อมูลการจองเรียบร้อยแล้ว");
-                    window.location.href='reserv.php';
+                    window.location.reload();
                 }else
                 {
                     alert("เกิดการผิดพลาด กรุณาลองใหม่อีกครั้ง!!");
@@ -865,7 +865,7 @@ function cancle_reserv(id_reserv,status)
                             if(res_cancle == 1)
                             {
                                 alert("ยกเลิกข้อมูลการจองเรียบร้อยแล้ว");
-                                window.location.href='reserv.php';
+                                window.location.reload();
                             }else
                             {
                                 alert("เกิดการผิดพลาด กรุณาลองใหม่อีกครั้ง!!");

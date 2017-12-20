@@ -1,4 +1,6 @@
 <?php session_start();
+if(isset($_POST['get_dataHistory']))
+{
     include_once('include/Conn.php');
     $thai_month_arr=array(
         "00"=>"",
@@ -143,3 +145,4 @@ $result_event = mysql_query($get_reserv);
 <?php } ?>
 </ul>
 </nav>
+<?php } ?>
