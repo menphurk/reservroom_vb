@@ -46,6 +46,7 @@ if(isset($_GET['id_reserv']))
     $str_txt_mic = mysql_real_escape_string($_POST['txt_mic']);
     $str_check_other = mysql_real_escape_string($_POST['check_other']);
     $str_txt_other = mysql_real_escape_string($_POST['txt_other']);
+    $str_table_reserv = mysql_real_escape_string($_POST['table_reserv']);
     $str_update_id = mysql_real_escape_string($_POST['update_id']);
 
     $check_reserv = "UPDATE `reserv` SET";
@@ -77,6 +78,7 @@ if(isset($_GET['id_reserv']))
     $check_reserv .= ",`txt_mic`='".$str_txt_mic."' ";
     $check_reserv .= ",`check_other`='".$str_check_other."' ";
     $check_reserv .= ",`txt_other`='".$str_txt_other."' ";
+    $check_reserv .= ",`id_table_reserv`='".$str_table_reserv."' ";
     $check_reserv .= ",`update_id`='".$str_update_id."' ";
     $check_reserv .= " WHERE id_reserv='".$id_reserv."'";
     $result_reserv = mysql_query($check_reserv);

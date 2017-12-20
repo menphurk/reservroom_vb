@@ -21,6 +21,7 @@
         JOIN users as u ON(u.id_user = r.update_id)
         JOIN group_users as gu ON(gu.id_group_users = u.id_group_users)
         JOIN room as ro ON(ro.id_room = r.id_room)
+        LEFT JOIN table_reserv as ts ON(ts.id = r.id_table_reserv)
         WHERE id_reserv='".$_SESSION['key_reserv']."'";
         $resultEdit_reserv = mysql_query($dataEdit_reserv);
         $rowEdit_reserv = mysql_fetch_array($resultEdit_reserv);
@@ -185,6 +186,11 @@
                                     }
                                 }
                             ?>
+                    </td>
+                </tr>
+                <tr style="border:1px solid #000000;font-size:12pt;">
+                    <td colspan="2">
+                        รูปแบบการจัดห้องประชุม : <strong><ins><?php echo $rowEdit_reserv['name_table'];?></ins></strong>
                     </td>
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;">

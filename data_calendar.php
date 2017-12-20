@@ -8,6 +8,7 @@ $get_calendar = "SELECT * FROM reserv as rs";
 $get_calendar .= " LEFT JOIN room as r on(r.id_room = rs.id_room)";
 $get_calendar .= " JOIN users as u on(u.id_user = rs.update_id)";
 $get_calendar .= " JOIN title as t on(t.title_id = u.title_id)";
+$get_calendar .= " WHERE id_status_reserv != '3'";
 $get_calendar .= " ORDER by id_reserv DESC";
 if ($result_calendar = mysql_query($get_calendar)) {
     while ($obj_calendar = mysql_fetch_array($result_calendar)) {

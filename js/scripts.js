@@ -405,6 +405,7 @@
         var typereserv = $("#typereserv").val();
         var num = $("#num").val();
         var tel = $("#tel").val();
+        var table_reserv = $("#table_reserv").val();
         if(starttime == "")
         {
             alert("กรุณาเลือกเวลาเริ่มต้น");
@@ -439,6 +440,11 @@
         {
             alert("กรุณากรอกเบอร์โทรที่สามารถติดต่อได้");
             $("#tel").focus();
+            return false;
+        }else if(table_reserv == "")
+        {
+            alert("กรุณาเลือกรูปแบบการจัดห้องประชุมด้วยครับ");
+            $("#table_reserv").focus();
             return false;
         }else
         {
@@ -648,8 +654,8 @@
     
 });
 window.onload = load_data('','','');
-window.onload = load_member(1,'','');
-window.onload = load_today(1,'','');
+window.onload = load_member('','','');
+window.onload = load_today('','','');
 window.onload = load_history('','','');
 function load_data(page,txt_searchevent,dataReserv_condition)
 {
@@ -1162,11 +1168,3 @@ setInterval(function(){ // เขียนฟังก์ชัน javascript �
 //         }
 //     });
 // },10000);
-
-$("#table_reserv").change(function(){
-    var table_reserv = $(this).val();
-    if(table_reserv == "U")
-    {
-        $("#show_table").addClass('square');
-    } 
-});

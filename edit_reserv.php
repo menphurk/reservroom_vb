@@ -5,7 +5,7 @@
     if(isset($_GET['id_reserv']) && !empty($_GET['id_reserv']))
     {
         $id_reserv_edit = $_GET['id_reserv'];
-        $data_reserv_edit = "select * from reserv where id_reserv='".$id_reserv_edit."'";
+        $data_reserv_edit = "select * from reserv where id_reserv='".$id_reserv_edit."' ";
         $result_reserv_edit = mysql_query($data_reserv_edit);
         $row_reserv_edit = mysql_fetch_array($result_reserv_edit);
 
@@ -577,6 +577,29 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
             </div>
         </div>
     </div>
+    <div class="form-group">
+                <label for="" class="col-sm-2 control-label">รูปแบบการจัดห้องประชุม :</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="table_reserv" id="table_reserv">
+                        <option value="">--- กรุณาเลือก ---</option>
+                    <?php
+                    $sql_table = "SELECT * FROM table_reserv";
+                    $query_table = mysql_query($sql_table);
+                    while($row_table = mysql_fetch_array($query_table))
+                    {
+                        if($row_table['id'] == $row_reserv_edit['id_table_reserv'])
+                        {
+                            $selected_table = "selected";
+                        }else
+                        {
+                            $selected_table = "";
+                        }
+                        echo "<option value='$row_table[id]' $selected_table>$row_table[name_table]</option>";
+                    }
+                    ?>
+                    </select>
+                </div>
+            </div>
     <div class="form-group">
         <div class="col-sm-offset-1 col-sm-10">
         <input type="hidden" name="update_id" value="<?php echo $_SESSION['login'][0];?>">

@@ -384,19 +384,22 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
                     </div>                    
                 </div>
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label for="" class="col-sm-2 control-label">รูปแบบการจัดห้องประชุม :</label>
                 <div class="col-sm-2">
                     <select class="form-control" name="table_reserv" id="table_reserv">
                         <option value="">--- กรุณาเลือก ---</option>
-                        <option value="U">ตัว U</option>
-                        <option value="square">สี่เหลี่ยม</option>
-                        <option value="room">ห้องเรียน</option>
-                        <option value=""></option>
+                    <?php
+                    $sql_table = "SELECT * FROM table_reserv";
+                    $query_table = mysql_query($sql_table);
+                    while($row_table = mysql_fetch_array($query_table))
+                    {
+                        echo "<option value='$row_table[id]'>$row_table[name_table]</option>";
+                    }
+                    ?>
                     </select>
-                    <div id="show_table" class=""></div>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-10">

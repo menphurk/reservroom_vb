@@ -30,6 +30,7 @@
         LEFT JOIN type_reserv as tr ON(tr.id_type = r.id_type)
         JOIN group_users as gu ON(gu.id_group_users = u.id_group_users)
         JOIN title as t ON(t.title_id = u.title_id)
+        LEFT JOIN table_reserv as ts ON(ts.id = r.id_table_reserv)
         WHERE id_reserv='".$id_reserv."'";
         $resultEdit_reserv = mysql_query($dataEdit_reserv);
         $rowEdit_reserv = mysql_fetch_array($resultEdit_reserv);
@@ -220,6 +221,11 @@
                                 }
                             ?>
                         </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="text-left">รูปแบบการจัดห้องประชุม : <ins><?php echo $rowEdit_reserv['name_table'];?></ins></p>
                     </td>
                 </tr>
                 <tr>
