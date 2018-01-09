@@ -11,9 +11,6 @@
         <script src="js/fullcalendar.js?rev=<?php echo time();?>"></script>
 		<script src="js/th.js?rev=<?php echo time();?>"></script>
 		<script src="js/jquery-ui.js?rev=<?php echo time();?>"></script>
-		<script src="js/jquery.PrintArea.js?rev=<?php echo time();?>"></script>
-		<script src="js/bootbox.js?rev=<?php echo time();?>"></script>
-		<script src="js/jquery.gritter.js?rev=<?php echo time();?>"></script>
 		<!-- ace scripts -->
 		<script src="js/elements.scroller.js?rev=<?php echo time();?>"></script>
 		<script src="js/elements.colorpicker.js?rev=<?php echo time();?>"></script>

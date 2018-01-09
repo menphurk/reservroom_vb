@@ -252,26 +252,9 @@
             <p>&nbsp;</p>
             <center>
             <?php 
-                // if($rowEdit_reserv['id_user'] != $_SESSION['login'][0])
-                // {
-                //     $disabled_btn_del = "disabled";
-                // }else
-                // {
-                //     $disabled_btn_del = "";
-                // }
-                if($rowEdit_reserv['id_user'] != $_SESSION['login'][0] || $rowEdit_reserv['id_status_reserv'] == 3)
-                {
-                    $disabled_btn_edit = "disabled";
-                }else
-                {
-                    $disabled_btn_edit = "";
-                }
-            ?>
-            <button class="btn btn-app btn-yellow btn-xs" <?php echo $disabled_btn_edit;?> onclick="javascript:window.location.href='edit_reserv.php?id_reserv=<?php echo $_SESSION['reserv'];?>'"><i class="ace-icon fa fa-pencil bigger-160"></i>แก้ไข</button>
-            <!-- <button class="btn btn-app btn-danger btn-xs" <?php echo $disabled_btn_del;?> onclick="remove_reserv('<?php echo $_SESSION['reserv'];?>')"><i class="ace-icon fa fa-trash-o bigger-200"></i>ลบ</button> -->
-            <?php 
             $confirm_status = $rowEdit_reserv['id_status_reserv'];
-            if($_SESSION['login'][3] == 2 || $_SESSION['login'][3] == 1){
+            
+            if($_SESSION['login'][3] == 1 || $_SESSION['login'][3] == 2){
                 if($rowEdit_reserv['id_status_reserv'] == 1)
                 {
                     $btn_color = "success";
@@ -279,7 +262,8 @@
                     $btn_text = "อนุมัติ";
                     $btn_click = "confirm_reserv";
                     $btn_id = "";
-                    $disabled = "";            
+                    $disabled = "";
+                    $disabled_btn_edit = "";         
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 2)
                 {
@@ -289,6 +273,7 @@
                     $btn_click = "cancle_reserv";
                     $btn_id = "bootbox-regular";
                     $disabled = "";
+                    $disabled_btn_edit = "disabled";
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 3)
                 {
@@ -297,10 +282,11 @@
                     $btn_text = "ยกเลิก";
                     $btn_click = "cancle_reserv";  
                     $btn_id = "";     
-                    $disabled = "disabled";             
+                    $disabled = "disabled";
+                    $disabled_btn_edit = "disabled";            
                 }
             }
-            if($_SESSION['login'][3] == 3)
+            if($rowEdit_reserv['id_user'] != $_SESSION['login'][0] && $_SESSION['login'][3] == 3)
             {
                 if($rowEdit_reserv['id_status_reserv'] == 1)
                 {
@@ -310,6 +296,7 @@
                     $btn_click = "confirm_reserv";
                     $btn_id = "";
                     $disabled = "disabled";
+                    $disabled_btn_edit = "disabled";
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 2)
                 {
@@ -318,7 +305,8 @@
                     $btn_text = "ยกเลิก";
                     $btn_click = "cancle_reserv";
                     $btn_id = "bootbox-regular";
-                    $disabled = "";
+                    $disabled = "disabled";
+                    $disabled_btn_edit = "";
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 3)
                 {
@@ -328,10 +316,11 @@
                     $btn_click = "cancle_reserv";  
                     $btn_id = "";
                     $disabled = "disabled";
+                    $disabled_btn_edit = "disabled";
                 }       
             }
             ?>
-
+            <button class="btn btn-app btn-yellow btn-xs" <?php echo $disabled_btn_edit;?> onclick="javascript:window.location.href='edit_reserv.php?id_reserv=<?php echo $_SESSION['reserv'];?>'"><i class="ace-icon fa fa-pencil bigger-160"></i>แก้ไข</button>
             <button class="btn btn-app btn-<?php echo $btn_color;?> btn-xs" id="<?php echo $btn_id;?>" <?php echo $disabled;?> onclick="<?php echo $btn_click;?>('<?php echo $_SESSION['reserv'];?>',<?php echo $confirm_status[0];?>)"><i class="ace-icon fa fa-<?php echo $icon_;?> bigger-200"></i><?php echo $btn_text;?></button>
             
             <input type="hidden" name="id_reserv" id="id_reserv" value="<?php echo $rowEdit_reserv['id_reserv'];?>">

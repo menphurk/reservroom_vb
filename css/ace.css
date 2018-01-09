@@ -14448,7 +14448,7 @@ div.ColVis_collectionBackground {
   background-color: black;
   z-index: 1100;
 }
-.fc-toolbar h2 {
+/* .fc-toolbar h2 {
   font-size: 22px;
   color: #65A0CE;
 }
@@ -14552,7 +14552,7 @@ div.ColVis_collectionBackground {
 }
 .fc .fc-button-group > * {
   margin: 0 1px 0 0;
-}
+} */
 .external-event {
   margin: 6px 0;
   padding: 0;

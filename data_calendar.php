@@ -15,23 +15,23 @@ if ($result_calendar = mysql_query($get_calendar)) {
 
         if($obj_calendar['id_room'] == "RVB00001")
         {
-            $color = "#5cb85c";
+            $className = "room1";
         }
         if($obj_calendar['id_room'] == "RVB00002")
         {
-            $color = "#838B8B";
+            $className = "room2";
         }
         if($obj_calendar['id_room'] == "RVB00003")
         {
-            $color = "#f0ad4e";
+            $className = "room3";
         }
         if($obj_calendar['id_room'] == "RVB00004")
         {
-            $color = "#d9534f";
+            $className = "room4";
         }
         if($obj_calendar['id_room'] == "RVB00005")
         {
-            $color = "#000000";
+            $className = "room5";
         }
 
         $startday = $obj_calendar['startday'];
@@ -50,11 +50,11 @@ if ($result_calendar = mysql_query($get_calendar)) {
             'desc' => $obj_calendar['desc'],
             'start' => $convert_startday." ".$obj_calendar['starttime'],
             'end' => $convert_endday." ".$obj_calendar['endtime'],
-            'color' => $color,
+            'className' => $className,
             'url' => 'show_reserv.php?id_reserv='.$obj_calendar['id_reserv'],
+            'id_room' => $obj_calendar['id_room'],
             'room' => $obj_calendar['name_room'],
             'name' => $obj_calendar['title_name']." ".$obj_calendar['name_log'],
-            "allDay"=> false
      );
 
     }

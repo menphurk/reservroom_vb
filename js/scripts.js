@@ -34,11 +34,45 @@
                 $('#eventUrl').attr('href',event.url);
                 $("#fullCalModal").modal();
             });
+            if(event.className == 'room1')
+            {
+                element.css({
+                    'background-color': '#5cb85c',
+                    'border-color' : '#5cb85c',
+                });
+            }
+            if(event.className == 'room2')
+            {
+                element.css({
+                    'background-color': '#838B8B',
+                    'border-color' : '#838B8B',
+                });
+            }
+            if(event.className == 'room3')
+            {
+                element.css({
+                    'background-color': '#f0ad4e',
+                    'border-color' : '#f0ad4e',
+                });
+            }
+            if(event.className == 'room4')
+            {
+                element.css({
+                    'background-color': '#d9534f',
+                    'border-color' : '#d9534f',
+                });
+            }
+            if(event.className == 'room5')
+            {
+                element.css({
+                    'background-color': '#000000',
+                    'border-color' : '#000000'
+                });
+            }
         },
         dayClick: function(date, allDay, jsEvent, view) {
             var date = date.format();
             var ex_date = date.split('-');
-            //alert(ex_date[2]);
             var day_reserv = ex_date[2];
             var month_reserv = ex_date[1];
             var year_reserv = ex_date[0];
@@ -51,22 +85,11 @@
             prevYear: 'left-double-arrow',
             nextYear: 'right-double-arrow'         
         },
+        lang: 'th',
         editable: false,
         events: "data_calendar.php",
         eventLimit:false,
     });
-    //Menu Active
-    // $('.active > a').click(function(){
-    //     $('.active').removeClass('active');
-    //     $(this).addClass('active');
-    // });
-    
-    // $('.submenu > li').click(function(){
-    //     $('.active').removeClass('active');
-    //     $(this).addClass('active');
-    //     $(this).parent('ul').prev('a').addClass('active');
-        
-    // });
 
     $("#btn_login").click(function(){
         var username = $("#username_log").val();

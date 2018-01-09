@@ -24,8 +24,6 @@
     $date_year = $date_year+543;
     //---ConvertDate---//
 ?>
-
-
                     <!-- /section:settings.box -->
                     <div class="row">
                         <div class="col-md-12">
@@ -63,7 +61,7 @@
                                     </div>
                                 <br>
                                     <?php if($_SESSION['login'][3] == '2'){?>
-                                <button class="btn btn-app btn-light btn-xs" onclick="window.print();"><i class="ace-icon fa fa-print bigger-160"></i>พิมพ์</button>
+                                <button class="btn btn-app btn-light btn-xs" id="print_event"><i class="ace-icon fa fa-print bigger-160"></i>พิมพ์</button>
                                 <?php } ?>
                                 </p>
                                 <p class="text-left" style="font-size:12pt;font-weight:bolder;">
@@ -123,3 +121,8 @@
 <?php 
     include_once('layout/footer.php');
 ?>
+<script>
+$("#print_event").click(function () {
+    print()
+});
+</script>

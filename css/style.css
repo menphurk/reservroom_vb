@@ -110,24 +110,22 @@
     background-color: #337ab7;
   }
 }
-#show_calendar {
-  display: block;
-}
 @media print {
- #show_calendar {
-     display: none;
+  #event_today {
+    display:none
   }
-  #show_calendar {
-     display: block;
+  #event_table{
+      display:none
+  }
+  #fullCalModal{
+      display:none
+  }
+  #myTabs{
+      display:none
+  }
+  #print_event{
+      display:none
   }
 }
 
-.square {
-  
-  width: 140px; 
-  
-  height: 140px; 
-  
-  background: blue; 
-  
-  }
+
