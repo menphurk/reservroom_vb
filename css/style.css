@@ -126,6 +126,9 @@
   #print_event{
       display:none
   }
+  .page-header{
+    margin-bottom: 100px;
+  }
 }
 
 

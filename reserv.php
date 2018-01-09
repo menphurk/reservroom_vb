@@ -60,7 +60,7 @@
                                     <div id='calendar'></div>
                                     </div>
                                 <br>
-                                    <?php if($_SESSION['login'][3] == '2'){?>
+                                    <?php if($_SESSION['login'][3] == '2' || $_SESSION['login'][1] == 'Surasak.J'){?>
                                 <button class="btn btn-app btn-light btn-xs" id="print_event"><i class="ace-icon fa fa-print bigger-160"></i>พิมพ์</button>
                                 <?php } ?>
                                 </p>

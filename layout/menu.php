@@ -1,4 +1,5 @@
 <?php session_start();
+// print_r($_SESSION['login']);
     include_once('session_expire.php');
     include_once('include/Conn.php');
     if(!isset($_SESSION['login']))

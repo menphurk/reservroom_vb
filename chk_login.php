@@ -14,8 +14,8 @@
             $row_log = mysql_fetch_array($result_log);
             $ses_data = array(
                 $_SESSION['ses_id'] = $row_log['id_user'],
-                $_SESSION['ses_user'] = $row_log['title_name']." ".$row_log['username_log'],
-                $_SESSION['ses_name'] = $row_log['name_log'],
+                $_SESSION['ses_user'] = $row_log['username_log'],
+                $_SESSION['ses_name'] = $row_log['title_name']." ".$row_log['name_log'],
                 $_SESSION['ses_role'] = $row_log['id_role'],
             );
                 $_SESSION['login'] = $ses_data;
