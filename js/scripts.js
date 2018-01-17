@@ -88,7 +88,7 @@
         lang: 'th',
         editable: false,
         events: "data_calendar.php",
-        eventLimit:false,
+        eventLimit:true,
     });
 
     $("#btn_login").click(function(){
@@ -1191,3 +1191,18 @@ setInterval(function(){ // เขียนฟังก์ชัน javascript �
 //         }
 //     });
 // },10000);
+
+$("#btn_reportlistreserv").click(function(){
+    var data_month = $("#data_month").val();
+    if(data_month != "")
+    {
+        $.ajax({
+            url: "data_reportreserv.php",
+            data: "data_month="+data_month,
+            success: function(res_report)
+            {
+                $("#show_report").html(res_report)
+            }
+        });
+    }
+});

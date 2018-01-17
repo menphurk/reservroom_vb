@@ -1,5 +1,4 @@
 <?php session_start();
-// print_r($_SESSION['login']);
     include_once('session_expire.php');
     include_once('include/Conn.php');
     if(!isset($_SESSION['login']))
@@ -137,6 +136,12 @@
                         </a>
 
                         <b class="arrow"></b>
+                      </li>
+                      <li class="">
+                        <a href="report_calendar.php">
+                          <i class="menu-icon fa fa-caret-right"></i>
+                          พิมพ์รายการจองประชุม
+                        </a>
                       </li>
                     </ul>
                 </li>
