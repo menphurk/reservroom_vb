@@ -84,7 +84,7 @@ if($_POST['btn_create_reserv'])
             if($num_checkRoom >= 1)
             {
                 echo "<script>alert('ไม่สามารถจองห้องได้ เนื่องจากห้องถูกจองใช้งานไปแล้ว กรุณาเลือกเวลาจองอื่นๆ')</script>";
-                echo "<meta http-equiv='refresh' content='0;url=create_reserv.php';>";
+                echo "<script>window.history.back();</script>";
             }else
             {
                 $str_insertevent = "INSERT INTO `reserv`(`id_reserv`, `startday`, `endday`, `starttime`, `endtime`, `id_room`, `id_type`, `topic`, `desc`, `num`, `namejoin`, `tel`, `check_catering`, `txt_catering2`, `txt_cateringother`, `check_projector`, `check_screen`, `check_dvd`, `check_tv`, `check_record`, `check_amp`, `check_control`, `txt_control`, `check_wireless_mic`, `txt_wireless_mic`, `check_mic`, `txt_mic`, `check_other`, `txt_other`,`id_status_reserv`, `create_date`, `id_table_reserv` , `update_id`)";
@@ -104,7 +104,4 @@ if($_POST['btn_create_reserv'])
                 }
             }
 }
-?>
-<?php
-include_once('layout/footer.php');
 ?>

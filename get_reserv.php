@@ -96,7 +96,7 @@ if(isset($_POST['get_dataReserv']))
         $num_pages = ($num_event/$per_page)+1;
         $num_pages = (int)$num_pages;
     }
-    $get_reserv .= " ORDER BY id_reserv ASC LIMIT $start_page,$per_page";
+    $get_reserv .= " ORDER BY id_reserv DESC LIMIT $start_page,$per_page";
     
     $result_event = mysql_query($get_reserv);
         while($row_event = mysql_fetch_array($result_event))
