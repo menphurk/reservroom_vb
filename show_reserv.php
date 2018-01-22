@@ -252,6 +252,14 @@
             <p>&nbsp;</p>
             <center>
             <?php 
+            if($rowEdit_reserv['id_user'] != $_SESSION['login'][0])
+            {
+                $disabled_btn_edit = "disabled";
+            }else
+            {
+                $disabled_btn_edit = "";
+            }
+            
             $confirm_status = $rowEdit_reserv['id_status_reserv'];
             
             if($_SESSION['login'][3] == 1 || $_SESSION['login'][3] == 2){
@@ -262,8 +270,7 @@
                     $btn_text = "อนุมัติ";
                     $btn_click = "confirm_reserv";
                     $btn_id = "";
-                    $disabled = "";
-                    $disabled_btn_edit = "";         
+                    $disabled = "";   
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 2)
                 {
@@ -273,7 +280,6 @@
                     $btn_click = "cancle_reserv";
                     $btn_id = "bootbox-regular";
                     $disabled = "";
-                    $disabled_btn_edit = "disabled";
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 3)
                 {
@@ -282,11 +288,10 @@
                     $btn_text = "ยกเลิก";
                     $btn_click = "cancle_reserv";  
                     $btn_id = "";     
-                    $disabled = "disabled";
-                    $disabled_btn_edit = "disabled";            
+                    $disabled = "disabled";          
                 }
             }
-            if($rowEdit_reserv['id_user'] != $_SESSION['login'][0] && $_SESSION['login'][3] == 3)
+            if($_SESSION['login'][3] == 3)
             {
                 if($rowEdit_reserv['id_status_reserv'] == 1)
                 {
@@ -296,7 +301,6 @@
                     $btn_click = "confirm_reserv";
                     $btn_id = "";
                     $disabled = "disabled";
-                    $disabled_btn_edit = "disabled";
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 2)
                 {
@@ -305,8 +309,13 @@
                     $btn_text = "ยกเลิก";
                     $btn_click = "cancle_reserv";
                     $btn_id = "bootbox-regular";
-                    $disabled = "disabled";
-                    $disabled_btn_edit = "";
+                    if($rowEdit_reserv['id_user'] != $_SESSION['login'][0])
+                    {
+                        $disabled = "disabled";
+                    }else
+                    {
+                        $disabled = "";
+                    }
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 3)
                 {
@@ -316,7 +325,6 @@
                     $btn_click = "cancle_reserv";  
                     $btn_id = "";
                     $disabled = "disabled";
-                    $disabled_btn_edit = "disabled";
                 }       
             }
             ?>
@@ -352,9 +360,8 @@
             <input type="hidden" name="txt_mic" id="txt_mic" value="<?php echo $rowEdit_reserv['txt_mic'];?>">
             <input type="hidden" name="check_other" id="check_other" value="<?php echo $rowEdit_reserv['check_other'];?>">
             <input type="hidden" name="id_status_reserv" id="id_status_reserv" value="<?php echo $rowEdit_reserv['id_status_reserv'];?>">
-            <input type="hidden" name="comment_reserv" id="comment_reserv" value="<?php echo $rowEdit_reserv['comment_reserv'];?>">
             <input type="hidden" name="txt_other" id="txt_other" value="<?php echo $rowEdit_reserv['txt_other'];?>">
-            <input type="hidden" name="table_room" id="table_room" value="<?php echo $rowEdit_reserv['table_room'];?>">
+            <input type="hidden" name="table_room" id="table_room" value="<?php echo $rowEdit_reserv['id_table_reserv'];?>">
 
 
             <button class="btn btn-app btn-pink btn-xs" onclick="window.location.href='export_pdf.php?uidReserv=<?php echo $_SESSION['reserv'];?>&key=<?php echo $token;?>'"><i class="ace-icon fa fa-file-pdf-o bigger-160"></i>Export</button>

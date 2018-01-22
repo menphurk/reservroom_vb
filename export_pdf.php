@@ -28,7 +28,7 @@
 ?>
         <div style="text-align: center"><img style="text-align:center;" src="images/logo_vb.png" alt=""></div>
         <h2 style="text-align:center;font-size:15pt;">แบบคำขอใช้ห้องประชุม สำนักงานอาสากาชาด</h2>
-            <table width="1000px" style="border:2px solid #000000;font-size:12pt;" cellPadding="9" >
+            <table width="1000px" style="border:2px solid #000000;font-size:12pt;" cellPadding="9">
                 <tr>
                     <td colspan="2" align="right">
                         <p>เลขที่จอง : <strong><ins><?php echo $rowEdit_reserv['id_reserv'];?></ins></strong></p>

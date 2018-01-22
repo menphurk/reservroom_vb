@@ -44,8 +44,8 @@
             if(event.className == 'room2')
             {
                 element.css({
-                    'background-color': '#838B8B',
-                    'border-color' : '#838B8B',
+                    'background-color': '#1E90FF',
+                    'border-color' : '#1E90FF',
                 });
             }
             if(event.className == 'room3')
@@ -1167,6 +1167,28 @@ setInterval(function(){ // เขียนฟังก์ชัน javascript �
             }
     }).responseText;
 },1000);
+
+$("#btn_reportlistreserv").click(function(){
+    var data_month = $("#data_month").val();
+    var data_year = $("#data_year").val();
+    var data_room = $("#data_room").val();
+    if(data_month != "")
+    {
+        $.ajax({
+            type: "POST",
+            url: "data_reportreserv.php",
+            data: "data_month="+data_month+"&data_year="+data_year+"&data_room="+data_room,
+            beforeSend: function()
+            {
+                $("#show_report").html("Loading...");
+            },
+            success: function(res_listreport)
+            {
+                $("#show_report").html(res_listreport);
+            }
+        });
+    }
+});
 
 // setInterval(function(){
 //     $.ajax({

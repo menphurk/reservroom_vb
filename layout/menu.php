@@ -250,6 +250,12 @@
 
                         <b class="arrow"></b>
                       </li>
+                      <li class="">
+                        <a href="report_calendar.php">
+                          <i class="menu-icon fa fa-caret-right"></i>
+                          พิมพ์รายการจองประชุม
+                        </a>
+                      </li>
                     </ul>
                 </li>
                 <li class="">
