@@ -36,10 +36,10 @@
         $sql_reportReserv .= "rs.check_amp as check_amp,rs.txt_control as txt_control,rs.check_control as check_control,rs.txt_wireless_mic as txt_wireless_mic,rs.check_wireless_mic as check_wireless_mic,rs.txt_mic as txt_mic,rs.check_mic as check_mic,rs.txt_other as txt_other,";
         $sql_reportReserv .= "rs.check_other as check_other,rs.check_catering AS check_catering,rs.txt_catering2 AS txt_catering2,rs.txt_cateringother AS txt_cateringother,rs.num AS num,tr.name_table AS name_table ";
         $sql_reportReserv .= " FROM reserv as rs";
-        $sql_reportReserv .= " JOIN room as r on(r.id_room = rs.id_room)";
+        $sql_reportReserv .= " LEFT JOIN room as r on(r.id_room = rs.id_room)";
         $sql_reportReserv .= " JOIN users as u on(u.id_user = rs.update_id)";
         $sql_reportReserv .= " JOIN title as t on(t.title_id = u.title_id)";
-        $sql_reportReserv .= " JOIN table_reserv as tr on(tr.id = rs.id_table_reserv)";
+        $sql_reportReserv .= " LEFT JOIN table_reserv as tr on(tr.id = rs.id_table_reserv)";
         $sql_reportReserv .= " WHERE id_status_reserv != '3'";
         $sql_reportReserv .= " AND MONTH(startday) = '".$str_data_month."' AND MONTH(endday) = '".$str_data_month."' ";
         $sql_reportReserv .= " AND YEAR(startday) = '".$str_data_year."' AND YEAR(endday) = '".$str_data_year."' ";
