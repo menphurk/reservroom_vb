@@ -40,7 +40,7 @@
         $sql_reportReserv .= " JOIN users as u on(u.id_user = rs.update_id)";
         $sql_reportReserv .= " JOIN title as t on(t.title_id = u.title_id)";
         $sql_reportReserv .= " LEFT JOIN table_reserv as tr on(tr.id = rs.id_table_reserv)";
-        $sql_reportReserv .= " WHERE id_status_reserv != '3'";
+        $sql_reportReserv .= " WHERE id_status_reserv = '2'";
         $sql_reportReserv .= " AND MONTH(startday) = '".$str_data_month."' AND MONTH(endday) = '".$str_data_month."' ";
         $sql_reportReserv .= " AND YEAR(startday) = '".$str_data_year."' AND YEAR(endday) = '".$str_data_year."' ";
         if($str_data_room != "")

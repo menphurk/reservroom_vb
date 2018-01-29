@@ -1,4 +1,3 @@
-<?php if(isset($_GET['print'])) { ?>
 <html>
     <head>
         <title>ระบบจองห้องประชุมสำนักงานอาสากาชาด</title>
@@ -8,11 +7,11 @@
         <link href="css/fullcalendar.css?rev=<?php echo time();?>" rel="stylesheet">
         <link href="css/fullcalendar.print.css?rev=<?php echo time();?>" rel="stylesheet" media="print">
     </head>
-    <script>
-        $("#calendar").print()
-    </script>
 <body>
-    <div id='calendar'></div>
+<?php if(isset($_GET['print'])) { ?>
+    <div style="margin:auto;width:100%;" class="show_calendar">
+        <div id='calendar'></div>
+    </div>
     <p class="text-left" style="font-size:12pt;font-weight:bolder;">
         <strong>***หมายเหตุ***</strong><br>
         <font color="#5cb85c">สีเขียว = ห้องรับรองใหญ่</font><br>
@@ -22,12 +21,14 @@
         <font color="#d9534f">สีแดง = ห้องประชุม ชั้น 4</font><br>
     </p>
 </body>
-        <!--JS-->
+        <script type="text/javascript">
+            window.print();
+        </script>
         <script src="js/jquery.js?rev=<?php echo time();?>"></script>
 		<script src="js/scripts.js?rev=<?php echo time();?>"></script>
 		<script src="js/date_time.js?rev=<?php echo time();?>"></script>
         <script src="js/bootstrap.min.js?rev=<?php echo time();?>"></script>  
-		<script src="js/moment.min.js?rev=<?php echo time();?>"></script>
+		<script src="js/moment.js?rev=<?php echo time();?>"></script>
         <script src="js/fullcalendar.js?rev=<?php echo time();?>"></script>
 		<script src="js/th.js?rev=<?php echo time();?>"></script>
 		<script src="js/jquery-ui.js?rev=<?php echo time();?>"></script>

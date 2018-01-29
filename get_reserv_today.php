@@ -41,9 +41,10 @@ if(isset($_POST['data']) == 1)
                 <th width='2%'>เลขที่จอง</th>
                 <th width='5%'>สถานะ</th>
                 <th width='15%'>หัวข้อประชุม</th>
-                <th width='10%'>วันที่-เวลาจอง</th>
+                <th width='10%'>วันที่-เวลาเริ่มต้น</th>
                 <th width='10%'>วันที่-เวลาสิ้นสุด</th>
                 <th width='10%'>ชื่อผู้จอง</th>
+                <th width='10%'>วันที่จอง</th>
                 <th width='8%' align='center'>&nbsp;</th>
             </tr>";
             $sql_today = "SELECT * FROM reserv AS rs ";
@@ -55,7 +56,7 @@ if(isset($_POST['data']) == 1)
             if($num_today == 0)
             {
                 echo "<tr>";
-                echo "<td colspan='7'><center><font color='red'><h1>ไม่มีรายการจองในวันนี้!</h1></font></td>";
+                echo "<td colspan='8'><center><font color='red'><h1>ไม่มีรายการจองในวันนี้!</h1></font></td>";
                 echo "</tr>";
             }
                 while($row_today = mysql_fetch_array($query_today))
@@ -89,10 +90,22 @@ if(isset($_POST['data']) == 1)
                     $convert_endmonth = $thai_month_arr[$convert_endmonth];
                     $new_convertendevent = $ex_endday[2]."-".$convert_endmonth."-".$ex_endday[0];
 
+                    //ConvertDate&Time Fidle//
+                    $createDate = $row_today['create_date'];
+                    $ex_createDate = explode(" ",$createDate);
+                    //Date//
+                    $exp_createDate = explode("-",$ex_createDate[0]);
+                    $convert_Datemonth = $thai_month_arr[$exp_createDate[1]];
+                    $convert_DateDay = $exp_createDate[2];
+                    $convert_DateYear = $exp_createDate[0]+543;
+                    $str_connvertDate = $convert_DateDay."-".$convert_Datemonth."-".$convert_DateYear;
+                    //Time//
+                    $convert_Time = $ex_createDate[1];
 
                     echo "<td>".$new_convertstartevent."<br>".substr($row_today['starttime'],0,-3)."&nbsp;น.</td>";
                     echo "<td>".$new_convertendevent."<br>".substr($row_today['endtime'],0,-3)."&nbsp;น.</td>";
                     echo "<td>".$row_today['title_name']."&nbsp;".$row_today['name_log']."</td>";
+                    echo "<td>".$str_connvertDate."</td>";
                     echo "<td>";
                     echo "<center><button class=\"btn btn-app btn-info btn-xs\" onclick=\"javascript:window.location.href='show_reserv.php?id_reserv=$row_today[id_reserv]'\">
                     <i class=\"ace-icon fa fa-info bigger-120\"></i>ดูข้อมูล</button></center>";

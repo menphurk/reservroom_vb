@@ -28,7 +28,7 @@
 ?>
         <div style="text-align: center"><img style="text-align:center;" src="images/logo_vb.png" alt=""></div>
         <h2 style="text-align:center;font-size:15pt;">แบบคำขอใช้ห้องประชุม สำนักงานอาสากาชาด</h2>
-            <table width="1000px" style="border:2px solid #000000;font-size:12pt;" cellPadding="9">
+            <table width="1000px" style="border:2px solid #000000;font-size:12pt;" cellPadding="9" >
                 <tr>
                     <td colspan="2" align="right">
                         <p>เลขที่จอง : <strong><ins><?php echo $rowEdit_reserv['id_reserv'];?></ins></strong></p>
@@ -102,16 +102,28 @@
                             $ex_endday[0] = $ex_endday[0]+543;
                             $convert_endmonth = $thai_month_arr[$convert_endmonth];
                             $new_convertendevent = $ex_endday[2]."-".$convert_endmonth."-".$ex_endday[0];
+
+                            //ConvertDate&Time Fidle//
+                            $createDate = $rowEdit_reserv['create_date'];
+                            $ex_createDate = explode(" ",$createDate);
+                            //Date//
+                            $exp_createDate = explode("-",$ex_createDate[0]);
+                            $convert_Datemonth = $thai_month_arr[$exp_createDate[1]];
+                            $convert_DateDay = $exp_createDate[2];
+                            $convert_DateYear = $exp_createDate[0]+543;
+                            $str_connvertDate = $convert_DateDay."-".$convert_Datemonth."-".$convert_DateYear;
+                            //Time//
+                            $convert_Time = $ex_createDate[1];
                 ?>
                 <tr style="border:1px solid #000000;font-size:12pt;">
                     <td colspan="2">
-                        วันที่จอง: <ins><?php echo $ex_startday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_startmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_startday[0];?></ins>
-                        ถึงวันที่ <ins><?php echo $ex_endday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_endmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_endday[0];?></ins>
+                        วันที่เริ่มต้น: <ins><?php echo $ex_startday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_startmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_startday[0];?></ins>
+                        วันที่สิ้นสุด <ins><?php echo $ex_endday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_endmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_endday[0];?></ins>
                     </td>
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;">
                     <td colspan="2">
-                       ตั้งแต่เวลา <ins><?php echo substr($rowEdit_reserv['starttime'],0,-3);?></ins>&nbsp;น. ถึงเวลา <ins><?php echo substr($rowEdit_reserv['endtime'],0,-3);?></ins> น.
+                        เวลา <ins><?php echo substr($rowEdit_reserv['starttime'],0,-3);?></ins>&nbsp;น. สิ้นสุดเวลา <ins><?php echo substr($rowEdit_reserv['endtime'],0,-3);?></ins> น.
                     </td>
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;">
@@ -194,8 +206,11 @@
                     </td>
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;">
-                    <td colspan="2">
+                    <td>
                         ชื่อผู้จอง : <strong><ins><?php echo $rowEdit_reserv['name_log'];?></ins></strong>
+                    </td>
+                    <td style="border:1px solid #000000;">
+                        วันที่จอง : <strong><ins><?php echo $str_connvertDate;?></ins></strong>
                     </td>
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;"> 

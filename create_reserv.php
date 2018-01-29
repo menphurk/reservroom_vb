@@ -31,10 +31,10 @@
     <div class="panel-body">
         <form action="save_reserv.php" method="post" class="form-horizontal">
         <div class="page-header">
-            <h3>วัน/เวลาที่จอง</h3>
+            <h3>วัน/เวลาที่ใช้</h3>
         </div>        
         <div class="form-group">
-            <label for="startday" class="col-sm-1 control-label">วันที่จอง :</label>
+            <label for="startday" class="col-sm-1 control-label">วันที่เริ่มต้น :</label>
             <div class="col-sm-5">
                 <select id="startday" name="startday">
                     <option value="">--- เลือกวัน ---</option>
@@ -100,7 +100,7 @@
                     <?php } ?>
                 </select>
             </div>
-            <label for="endday" class="col-sm-1 control-label">ถึงวันที่ :</label>
+            <label for="endday" class="col-sm-1 control-label">วันที่สิ้นสุด :</label>
             <div class="col-sm-5">
               <select id="endday" name="endday">
                     <option value="">--- เลือกวัน ---</option>
@@ -192,7 +192,7 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
      $times = hoursRange(21600, 63000, 60 * 15, 'H:i');
 ?>
         <div class="form-group">
-            <label for="starttime" class="col-sm-1 control-label">เวลาจอง :</label>
+            <label for="starttime" class="col-sm-1 control-label">เวลา :</label>
             <div class="col-sm-5">
                 <select id="starttime" name="starttime">
                     <option value="">---</option>
@@ -207,7 +207,7 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
                 </select>
                 <label for="">น.</label>
             </div>
-            <label for="endtime" class="col-sm-1 control-label">ถึงเวลา :</label>
+            <label for="endtime" class="col-sm-1 control-label">สิ้นสุดเวลา :</label>
             <div class="col-sm-5">
                 <select id="endtime" name="endtime">
                     <option value="">---</option>
@@ -313,7 +313,7 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
                     <label>
                         <input type="radio" name="check_catering" id="check_catering2" value="2">
                         จัดเลี้ยงเอง ยืมอุปกรณ์
-                        <input type="text" class="form-control" id="txt_catering" name="txt_catering2" disabled="disabled">
+                        <input type="text" class="form-control" id="txt_catering2" name="txt_catering2" disabled="disabled">
                     </label>
                     </div>
                     <div class="radio">
@@ -403,7 +403,7 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
         </div>
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-10">
-            <input type="hidden" name="update_id" id="update_id" value="<?php echo $_SESSION['login'][0];?>">
+            <input type="hidden" name="update_id" value="<?php echo $_SESSION['login'][0];?>">
             <center><button type="submit" class="btn btn-success" id="btn_create_reserv" name="btn_create_reserv" value="add">บันทึกการจอง</button></center>
             </div>
         </div>

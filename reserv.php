@@ -55,8 +55,9 @@
                                 </div>
                                 <div class="tab-pane fade" role="tabpanel" id="event_list" aria-labelledby="event_list-tab">
                                 <p>
-                                    <div id='p_cal'>
-                                        <div id='calendar'></div>
+                                    <div style="margin:auto;width:100%;" class="show_calendar">
+                                    
+                                    <div id='calendar'></div>
                                     </div>
                                 <br>
                                     <?php if($_SESSION['login'][3] == '2' || $_SESSION['login'][1] == 'Surasak.J' || $_SESSION['login'][3] == '1'){?>
@@ -115,11 +116,6 @@
 {
     background-color: rgba(0,0,0,.0001) !important;
 }
-#calendar {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
 </style>
 
 <?php 
@@ -127,7 +123,6 @@
 ?>
 <script>
 $("#print_event").click(function () {
-    // print()
-    window.location.href= 'print_calendar.php?print=1';
+    print()
 });
 </script>

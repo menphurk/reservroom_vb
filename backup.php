@@ -1,11 +1,14 @@
 <?php
     // db config
-    include('include/Conn.php');
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "mmf0d4boom36";
+    $dbname = "db_reservroom";
     // db connect
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+    $pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
     // file header stuff
     $output = "-- PHP MySQL Dump\n--\n";
-    $output .= "-- Host: $host\n";
+    $output .= "-- Host: $dbhost\n";
     $output .= "-- Generated: " . date("r", time()) . "\n";
     $output .= "-- PHP Version: " . phpversion() . "\n\n";
     $output .= "SET SQL_MODE=\"NO_AUTO_VALUE_ON_ZERO\";\n\n";
@@ -73,4 +76,5 @@
     header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
     header('Expires: 0');
     header('Pragma: public');
+    echo $output;
 ?>

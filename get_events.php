@@ -45,8 +45,6 @@ if ($result_calendar = mysql_query($get_calendar)) {
             'end' => $obj_calendar['end']."T".$obj_calendar['endtime'],
             // 'url' => "javascript:get_model('$obj_calendar[id]');",
             // 'color' => $color,
-        
-
      );
     }
     echo json_encode($data_event);

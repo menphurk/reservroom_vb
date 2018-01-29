@@ -19,14 +19,9 @@
             <div class="col-sm-4">
                 <select class="form-control" name="title" id="title">
                     <option value="">--- กรุณาเลือก ---</option>
-                    <?php 
-                    $data_title = "SELECT * FROM title";
-                    $result_title = mysql_query($data_title);
-                    while($row_title = mysql_fetch_array($result_title))
-                    {
-                        echo "<option value='$row_title[title_id]'>$row_title[title_name]</option>";
-                    }
-                    ?>
+                    <option value="นาย">นาย</option>
+                    <option value="นาง">นาง</option>
+                    <option value="นางสาว">นางสาว</option>
                 </select>
             </div>
         </div>

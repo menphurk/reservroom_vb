@@ -124,16 +124,29 @@
                             $ex_endday[0] = $ex_endday[0]+543;
                             $convert_endmonth = $thai_month_arr[$convert_endmonth];
                             $new_convertendevent = $ex_endday[2]."-".$convert_endmonth."-".$ex_endday[0];
+
+
+                            //ConvertDate&Time Fidle//
+                            $createDate = $rowEdit_reserv['create_date'];
+                            $ex_createDate = explode(" ",$createDate);
+                            //Date//
+                            $exp_createDate = explode("-",$ex_createDate[0]);
+                            $convert_Datemonth = $thai_month_arr[$exp_createDate[1]];
+                            $convert_DateDay = $exp_createDate[2];
+                            $convert_DateYear = $exp_createDate[0]+543;
+                            $str_connvertDate = $convert_DateDay."-".$convert_Datemonth."-".$convert_DateYear;
+                            //Time//
+                            $convert_Time = $ex_createDate[1];
                 ?>
                 <tr>
                     <td colspan="3">
-                        <p class="text-left">วันที่จอง: <ins><?php echo $ex_startday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_startmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_startday[0];?></ins>
-                        ถึงวันที่ <ins><?php echo $ex_endday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_endmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_endday[0];?></ins></p>
+                        <p class="text-left">วันที่เริ่มต้น: <ins><?php echo $ex_startday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_startmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_startday[0];?></ins>
+                        วันที่สิ้นสุด <ins><?php echo $ex_endday[2];?></ins>&nbsp;เดือน&nbsp;<ins><?php echo $convert_endmonth;?></ins>&nbsp;พ.ศ.<ins><?php echo $ex_endday[0];?></ins></p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <p class="text-left">ตั้งแต่เวลา <ins><?php echo substr($rowEdit_reserv['starttime'],0,-3);?></ins>&nbsp;น. ถึงเวลา <ins><?php echo substr($rowEdit_reserv['endtime'],0,-3);?></ins> น.
+                        <p class="text-left">เวลา <ins><?php echo substr($rowEdit_reserv['starttime'],0,-3);?></ins>&nbsp;น. สิ้นสุดเวลา <ins><?php echo substr($rowEdit_reserv['endtime'],0,-3);?></ins> น.
                         </p>
                     </td>
                 </tr>
@@ -229,8 +242,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td>
                         <p class="text-left">ชื่อผู้จอง : <ins><?php echo $rowEdit_reserv['title_name']."&nbsp;".$rowEdit_reserv['name_log'];?></ins></p>
+                    </td>
+                    <td>
+                        <p class="text-left">วันที่จอง : <ins><?php echo $str_connvertDate;?></ins></p>
                     </td>
                 </tr>
                 <tr> 
@@ -259,7 +275,6 @@
             {
                 $disabled_btn_edit = "";
             }
-            
             $confirm_status = $rowEdit_reserv['id_status_reserv'];
             
             if($_SESSION['login'][3] == 1 || $_SESSION['login'][3] == 2){
@@ -362,10 +377,11 @@
             <input type="hidden" name="id_status_reserv" id="id_status_reserv" value="<?php echo $rowEdit_reserv['id_status_reserv'];?>">
             <input type="hidden" name="txt_other" id="txt_other" value="<?php echo $rowEdit_reserv['txt_other'];?>">
             <input type="hidden" name="table_room" id="table_room" value="<?php echo $rowEdit_reserv['id_table_reserv'];?>">
-
+            <input type="hidden" name="comment_reserv" id="comment_reserv" value="<?php echo $rowEdit_reserv['comment_reserv'];?>">
 
             <button class="btn btn-app btn-pink btn-xs" onclick="window.location.href='export_pdf.php?uidReserv=<?php echo $_SESSION['reserv'];?>&key=<?php echo $token;?>'"><i class="ace-icon fa fa-file-pdf-o bigger-160"></i>Export</button>
             </center>
+
         </div>
     </div>
     </div>    

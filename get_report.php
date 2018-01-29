@@ -131,6 +131,7 @@ $result_room = mysql_query($sql_room);
         $sql_year .= " GROUP BY r.name_room";
         $result_reportYear = mysql_query($sql_year);
         $num_reportYear = mysql_num_rows($result_reportYear);
+
         if($num_reportYear == 0)
         {
             echo "No Data Report";
@@ -162,7 +163,6 @@ $result_room = mysql_query($sql_room);
                     echo "<td align='center'>".number_format($hours,0)."</td>";
                     echo "<td align='center'>".number_format($minute,0)."</td>";
                     echo "</tr>";
-
                     //Sum//
                     $sum_total = @$sum_total+$row_reportYear['sumtotal'];
                     $sum_hours = @$sum_hours+$hours;
