@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-12">
                         <div class="page-header">
-                            <h1>พิมพ์รายการห้องประชุม</h1>
+                            <h1>พิมพ์รายการการใช้ห้องประชุม</h1>
                         </div>
                             <p>
                             <div class="col-md-7 col-md-offset-3">

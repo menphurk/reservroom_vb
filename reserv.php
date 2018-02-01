@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-md-12">
                         <div class="page-header">
-                            <h1>รายการจองประชุม</h1>
+                            <h1>รายการการใช้ห้องประชุม</h1>
                         </div>
                             <!-- PAGE CONTENT BEGINS -->
                             <ul class="nav nav-tabs" id="myTabs" role="tablist">

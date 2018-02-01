@@ -123,7 +123,7 @@
                       <li class="">
                         <a href="reserv.php">
                           <i class="menu-icon fa fa-caret-right"></i>
-                          รายการจองห้องประชุม
+                          รายการการใช้ห้องประชุม
                         </a>
 
                         <b class="arrow"></b>
@@ -140,7 +140,7 @@
                       <li class="">
                         <a href="report_calendar.php">
                           <i class="menu-icon fa fa-caret-right"></i>
-                          พิมพ์รายการจองประชุม
+                          พิมพ์รายการการใช้ห้องประชุม
                         </a>
                       </li>
                     </ul>
