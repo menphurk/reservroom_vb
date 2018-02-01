@@ -19,7 +19,9 @@
                 $_SESSION['ses_role'] = $row_log['id_role'],
             );
                 $_SESSION['login'] = $ses_data;
-
+                $strSessionID = session_id();
+                $sql_UserOnline = "INSERT INTO `users_online`(`sid`, `time`, `ip`, `UserID`) VALUES ('".$strSessionID."',NOW(),'".$_SERVER['REMOTE_ADDR']."','".$_SESSION['login'][0]."')";
+                mysql_query($sql_UserOnline);
            echo "<script>window.location.href='reserv.php'</script>";
         }else
         {

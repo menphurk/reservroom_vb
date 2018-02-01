@@ -294,7 +294,13 @@
                     $btn_text = "ยกเลิก";
                     $btn_click = "cancle_reserv";
                     $btn_id = "bootbox-regular";
-                    $disabled = "";
+                    if($rowEdit_reserv['id_user'] != $_SESSION['login'][0])
+                    {
+                        $disabled = "disabled";
+                    }else
+                    {
+                        $disabled = "";
+                    }
                 }
                 if($rowEdit_reserv['id_status_reserv'] == 3)
                 {

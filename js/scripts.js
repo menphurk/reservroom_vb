@@ -469,9 +469,9 @@
             alert("กรุณาเลือกรูปแบบการจัดห้องประชุมด้วยครับ");
             $("#table_reserv").focus();
             return false;
-        }else
+        }else 
         {
-            return true;
+             return true;
         }
     });
     $("#check_control").click(function(){
@@ -479,6 +479,16 @@
         {
             $("#txt_control").removeAttr('disabled','disabled')
             $("#txt_control").focus();
+            var txt_control = $("#txt_control").val();
+            // if(txt_control == "")
+            // {
+            //     alert("กรุณาระบุจำนวนที่ต้องการใช้งานด้วยครับ");
+            //     $("#txt_control").focus();
+            //     return false;
+            // }else
+            // {
+            //     return true;
+            // }
         }else
         {
             $("#txt_control").attr('disabled','disabled')
@@ -490,6 +500,16 @@
         {
             $("#txt_wireless_mic").removeAttr('disabled','disabled')
             $("#txt_wireless_mic").focus();
+            // var txt_wireless_mic = $("#txt_wireless_mic").val();
+            // if(txt_wireless_mic == "")
+            // {
+            //     alert("กรุณาระบุจำนวนที่ต้องการใช้งานด้วยครับ");
+            //     $("#txt_wireless_mic").focus();
+            //     return false;
+            // }else
+            // {
+            //     return true;
+            // }
         }else
         {
             $("#txt_wireless_mic").attr('disabled','disabled')
@@ -501,6 +521,16 @@
         {
             $("#txt_mic").removeAttr('disabled','disabled')
             $("#txt_mic").focus();
+            // var txt_mic = $("#txt_mic").val();
+            // if(txt_mic == "")
+            // {
+            //     alert("กรุณาระบุจำนวนที่ต้องการใช้งานด้วยครับ");
+            //     $("#txt_mic").focus();
+            //     return false;
+            // }else
+            // {
+            //     return true;
+            // }
         }else
         {
             $("#txt_mic").attr('disabled','disabled')
@@ -510,12 +540,22 @@
     $("#check_other").click(function(){
         if(this.checked)
         {     
-            $("#txt_other").removeAttr('disabled','disabled')
-            $("#txt_other").focus()
+            $("#txt_other").removeAttr('disabled','disabled');
+            $("#txt_other").focus();
+            // var txt_other = $("#txt_other").val();
+            // if(txt_other == "")
+            // {
+            //     alert("กรุณาระบุจำนวนที่ต้องการใช้งานด้วยครับ");
+            //     $("#txt_other").focus();
+            //     return false;                
+            // }else
+            // {
+            //     return true;
+            // }
         }else
         {
-            $("#txt_other").attr('disabled','disabled')
-            $("#txt_other").val("")
+            $("#txt_other").attr('disabled','disabled');
+            $("#txt_other").val("");
         }
     });
     $("#check_catering2").click(function(){

@@ -29,10 +29,10 @@
     <hr>
     <table class="table table-bordered table-striped">
         <tr>
-            <th>ชื่อ-นามสกุล</th>
-            <th width="18%">ชื่อผู้ใช้งาน</th>
+            <th width="15%">ชื่อ-นามสกุล</th>
+            <th width="15%">ชื่อผู้ใช้งาน</th>
             <th width="15%">ฝ่าย</th>
-            <th width="15%">สิทธิ์ผู้ใช้งาน</th>
+            <th width="12%">สิทธิ์ผู้ใช้งาน</th>
             <th width="20%">&nbsp;</th>
         </tr>
         <?php
