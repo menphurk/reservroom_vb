@@ -50,7 +50,7 @@ if(isset($_POST['data']) == 1)
             $sql_today = "SELECT * FROM reserv AS rs ";
             $sql_today .= " JOIN users as u on(u.id_user = rs.update_id)";
             $sql_today .= " JOIN title as t on(t.title_id = u.title_id)";
-            $sql_today .= " WHERE rs.startday='".$today."' AND rs.id_room='".$row_room['id_room']."' ";
+            $sql_today .= " WHERE rs.startday='".$today."' AND rs.id_room='".$row_room['id_room']."' AND id_status_reserv != '3' ";
             $query_today = mysql_query($sql_today);
             $num_today = mysql_num_rows($query_today);
             if($num_today == 0)
