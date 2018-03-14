@@ -31,9 +31,7 @@ $result_room = mysql_query($sql_room);
         $_SESSION['str_endday'] = $endday;
 
         //----SQL_GETREPORT-----//
-        $sql_report = "SELECT ISNULL(r.name_room) AS nameroom,COUNT(id_reserv) AS sumtotal,";
-        $sql_report .= " SUM(TIMEDIFF(HOUR(endtime),HOUR(starttime))) AS sumhours,";
-        $sql_report .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
+        $sql_report = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,startday,endday,endtime,starttime";
         $sql_report .= " FROM reserv AS rs";
         $sql_report .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
         $sql_report .= " AND startday >= '".$startday."' ";
@@ -81,18 +79,22 @@ $result_room = mysql_query($sql_room);
             echo "</tr>";
             while($row_report = mysql_fetch_array($result_report))
             {   
-                $sumhours = $row_report['sumhours'];
-                $summinute = $row_report['summinute'];
+                $start = strtotime($row_report['startday']." ".$row_report['starttime']);
+                $end = strtotime($row_report['endday']." ".$row_report['endtime']);
+                $diff = $end - $start;
+                $hours = floor($diff / (60 * 60));
+                $minutes = $diff - $hours * (60 * 60);
+                $minutes = floor($minutes/60);
                 echo "<tr'>";
                 echo "<td>".$row_report['nameroom']."</td>";
                 echo "<td align='center'>".number_format($row_report['sumtotal'],0)."</td>";
-                echo "<td align='center'>".number_format($sumhours,0)."</td>";
-                echo "<td align='center'>".number_format($summinute,0)."</td>";
+                echo "<td align='center'>".number_format($hours,0)."</td>";
+                echo "<td align='center'>".number_format($minutes,0)."</td>";
                 echo "</tr>";
                 //Sum//
                 $sum_total = @$sum_total+$row_report['sumtotal'];
-                $sum_hours = @$sum_hours+$row_report['sumhours'];
-                $sum_minute = @$sum_minute+$row_report['summinute'];
+                $sum_hours = @$sum_hours+$hours;
+                $sum_minute = @$sum_minute+$minutes;
                 //Sum//
             }
 
@@ -100,7 +102,7 @@ $result_room = mysql_query($sql_room);
             echo "<td>รวม</td>";
             echo "<td>".number_format($sum_total,0)."</td>";
             echo "<td>".number_format($sum_hours,0)."</td>";
-            echo chkTime(number_format($sum_minute,0));
+
             echo "<td>".number_format($sum_minute,0)."</td>";
             echo "</tr>";
             echo "</table>";
@@ -120,9 +122,7 @@ $result_room = mysql_query($sql_room);
         $str_startday = ($txt_year-1)."-10-01";
         $str_endday = $txt_year."-09-30";
         //SQL_REPORT//
-        $sql_year = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,endtime,starttime,";
-        $sql_year .= " SUM(TIMEDIFF(HOUR(endtime),HOUR(starttime))) AS sumhours,";
-        $sql_year .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
+        $sql_year = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,startday,endday,endtime,starttime";
         $sql_year .= " FROM reserv AS rs";
         $sql_year .= " LEFT JOIN room as r ON(r.id_room = rs.id_room)";
         $sql_year .= " WHERE id_status_reserv='2' ";
@@ -155,18 +155,22 @@ $result_room = mysql_query($sql_room);
                 echo "<td width='10%'>นาที</td>";
                 echo "</tr>";
                 while($row_reportYear = mysql_fetch_array($result_reportYear)){
-                    $hours = HoursDiff($row_reportYear['starttime'],$row_reportYear['endtime']);
-                    $minute = MinuteDiff($row_reportYear['starttime'],$row_reportYear['endtime']);
+                    $start = strtotime($row_reportYear['startday']." ".$row_reportYear['starttime']);
+                    $end = strtotime($row_reportYear['endday']." ".$row_reportYear['endtime']);
+                    $diff = $end - $start;
+                    $hours = floor($diff / (60 * 60));
+                    $minutes = $diff - $hours * (60 * 60);
+                    $minutes = floor($minutes/60);
                     echo "<tr>";
                     echo "<td>".$row_reportYear['nameroom']."</td>";
                     echo "<td align='center'>".number_format($row_reportYear['sumtotal'],0)."</td>";
-                    echo "<td align='center'>".number_format($hours,0)."</td>";
-                    echo "<td align='center'>".number_format($minute,0)."</td>";
+                    echo "<td align='center'>".number_format($hours)."</td>";
+                    echo "<td align='center'>".number_format($minutes)."</td>";
                     echo "</tr>";
                     //Sum//
                     $sum_total = @$sum_total+$row_reportYear['sumtotal'];
                     $sum_hours = @$sum_hours+$hours;
-                    $sum_minute = @$sum_minute+$minute;
+                    $sum_minute = @$sum_minute+$minutes;
                     //Sum//
                 }
                 echo "<tr class='active' align='center'>";
@@ -194,9 +198,7 @@ $result_room = mysql_query($sql_room);
         $_SESSION['str_month'] = $str_month;
 
         //SQL_REPORT//
-        $Sql_report_Month = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,";
-        $Sql_report_Month .= " SUM(TIMEDIFF(HOUR(endtime),HOUR(starttime))) AS sumhours,";
-        $Sql_report_Month .= " SUM(TIMEDIFF(MINUTE(endtime),MINUTE(starttime))) AS summinute";
+        $Sql_report_Month = "SELECT r.name_room AS nameroom,COUNT(id_reserv) AS sumtotal,startday,endday,endtime,starttime";
         $Sql_report_Month .= " FROM reserv AS rs";
         $Sql_report_Month .= " INNER JOIN room as r ON(r.id_room = rs.id_room)";
         $Sql_report_Month .= " WHERE id_status_reserv='2' ";
@@ -230,16 +232,22 @@ $result_room = mysql_query($sql_room);
             echo "<td width='10%'>นาที</td>";
             echo "</tr>";
             while ($row_report_Month = mysql_fetch_array($result_report_Month)) {
+                $start = strtotime($row_report_Month['startday']." ".$row_report_Month['starttime']);
+                $end = strtotime($row_report_Month['endday']." ".$row_report_Month['endtime']);
+                $diff = $end - $start;
+                $hours = floor($diff / (60 * 60));
+                $minutes = $diff - $hours * (60 * 60);
+                $minutes = floor($minutes/60);
             echo "<tr>";
             echo "<td>".$row_report_Month['nameroom']."</td>";
             echo "<td align='center'>".number_format($row_report_Month['sumtotal'],0)."</td>";
-            echo "<td align='center'>".number_format($row_report_Month['sumhours'],0)."</td>";
-            echo "<td align='center'>".number_format($row_report_Month['summinute'],0)."</td>";
+            echo "<td align='center'>".number_format($hours,0)."</td>";
+            echo "<td align='center'>".number_format($minutes,0)."</td>";
             echo "</tr>";
                 //Sum//
                 $sum_total = @$sum_total+$row_report_Month['sumtotal'];
-                $sum_hours = @$sum_hours+$row_report_Month['sumhours'];
-                $sum_minute = @$sum_minute+$row_report_Month['summinute'];
+                $sum_hours = @$sum_hours+$hours;
+                $sum_minute = @$sum_minute+$minutes;
                 //Sum//
             }
             echo "<tr class='active' align='center'>";
