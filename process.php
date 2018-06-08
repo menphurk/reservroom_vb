@@ -387,10 +387,39 @@
             if($result_reserv)
             {
                 echo 1;
+                //////////////////////////////////////////////////////////////
+                $sql = "SELECT * FROM reserv WHERE id_reserv='".$id_reserv."'";
+                $query = mysql_query($sql);
+                $row = mysql_fetch_array($query);
+
+                    $message = "\nเลขที่จอง:".$id_reserv."\n".'เรื่อง: '.$row['topic']."\n".'เบอร์ติดต่อ: '.$row['tel']."\n".'สถานะ: ';
+                    if($row['id_status_reserv'] == '2')
+                    {
+                        $message .= "อนุมัติ";
+                    }else if($row['id_status_reserv'] == '3')
+                    {
+                        $message .= "ยกเลิก";
+                        $message .= " (".$row['comment_reserv'].")";
+                    }
+                    $message .= "\n URL: ".$_SERVER['HTTP_HOST']." '/reservroom/show_reserv.php?id='".$id_reserv;
+                
+                    sendlinemesg();
+                    header('Content-Type: text/html; charset=utf-8');
+                    $res = notify_message($message);
+                //////////////////////////////////////////////////////////////
             }else
             {
                 echo 0;
-            } 
+            }
+            $str_status = "";
+            if($status == '2')
+            {
+                $str_status = "อนุมัติ";
+            }else if($status == '3')
+            {
+                $str_status = "ยกเลิก";
+                $str_comment = $comment_reserv;
+            }
     }
     if(isset($_REQUEST['id_reserv_del']))
     {
@@ -405,4 +434,32 @@
             echo 0;
         }         
     }
+
+    function sendlinemesg() {
+
+        define('LINE_API',"https://notify-api.line.me/api/notify");
+        define('LINE_TOKEN','FQrUgIoZqSgWruTPCrI9iJVM72IchWPoiolt5kyZjqN');
+    
+        function notify_message($message){
+    
+            $queryData = array('message' => $message);
+            $queryData = http_build_query($queryData,'','&');
+            $headerOptions = array(
+                'http'=>array(
+                    'method'=>'POST',
+                    'header'=> "Content-Type: application/x-www-form-urlencoded\r\n"
+                            ."Authorization: Bearer ".LINE_TOKEN."\r\n"
+                            ."Content-Length: ".strlen($queryData)."\r\n",
+                    'content' => $queryData
+                )
+            );
+            $context = stream_context_create($headerOptions);
+            $result = file_get_contents(LINE_API,FALSE,$context);
+            $res = json_decode($result);
+            return $res;
+    
+        }
+    
+    }
+
 ?>

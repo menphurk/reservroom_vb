@@ -98,16 +98,10 @@ if($num_reportReserv == 0)
             echo "<td>วันที่&nbsp;<strong>".$value."</strong></td>";
             echo "</tr>";
 
-            // foreach($listRoom as $value_room) //Room
-            // {
-                // echo "<tr class='active'>";
-                // echo "<td colspan='2'>&nbsp;-&nbsp;<strong>".$value_report['name_room']."</strong></td>";
-                // echo "</tr>";
+
                 foreach($rowReport as $value_report) //Report
                 {
-                    
-                    // if($value_room['id_room'] == $value_report['id_room'])
-                    // {
+
                         if($value_report['id_room'] == 'RVB00001')
                         {
                             $colorRoom = "#5cb85c";
@@ -212,10 +206,7 @@ if($num_reportReserv == 0)
                             echo "</td>";
                             echo "</tr>";
                         }
-                    //}
-                    // echo "</tr>";
                 }
-            //}
         }
     
         $token = md5(uniqid(rand(), true));

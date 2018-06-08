@@ -115,4 +115,45 @@ if(isset($_POST['data']) == 1)
     }
 
 }
+
+// //LineNotify//
+// date_default_timezone_set('Asia/Bangkok');
+// $date = date('H:i:s');
+// if($date == "15:42:00")
+// {
+//     $message = "\nตารางการใช้ห้องวันนี้: ".$row_room['name_room']."\n";
+//     $message .= "- รหัสจอง".$row_today['id_reserv']." วัน/เวลาเริ่มต้น ".$new_convertstartevent."/".substr($row_today['starttime'],0,3)." น. วัน/เวลาสิ้นสุด".$new_convertendevent."/".substr($row_today['endtime'],0,3)." น.";
+                    
+//     sendlinemesg();
+//     header('Content-Type: text/html; charset=utf-8');
+//     $res = notify_message($message);
+
+//                     // //LineNotify//
+//                     function sendlinemesg() {
+	
+//                         define('LINE_API',"https://notify-api.line.me/api/notify");
+//                         define('LINE_TOKEN','FQrUgIoZqSgWruTPCrI9iJVM72IchWPoiolt5kyZjqN');
+                   
+//                         function notify_message($message){
+                   
+//                             $queryData = array('message' => $message);
+//                             $queryData = http_build_query($queryData,'','&');
+//                             $headerOptions = array(
+//                                 'http'=>array(
+//                                     'method'=>'POST',
+//                                     'header'=> "Content-Type: application/x-www-form-urlencoded\r\n"
+//                                             ."Authorization: Bearer ".LINE_TOKEN."\r\n"
+//                                             ."Content-Length: ".strlen($queryData)."\r\n",
+//                                     'content' => $queryData
+//                                 )
+//                             );
+//                            $context = stream_context_create($headerOptions);
+//                             $result = file_get_contents(LINE_API,FALSE,$context);
+//                             $res = json_decode($result);
+//                             return $res;
+                   
+//                         }
+                   
+//                    }
+// }
 ?>

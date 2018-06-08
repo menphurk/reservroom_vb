@@ -155,6 +155,7 @@ $result_room = mysql_query($sql_room);
                 echo "<td width='10%'>นาที</td>";
                 echo "</tr>";
                 while($row_reportYear = mysql_fetch_array($result_reportYear)){
+                    echo $row_reportYear['sumhours'];
                     $start = strtotime($row_reportYear['startday']." ".$row_reportYear['starttime']);
                     $end = strtotime($row_reportYear['endday']." ".$row_reportYear['endtime']);
                     $diff = $end - $start;

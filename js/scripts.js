@@ -1230,6 +1230,27 @@ $("#btn_reportlistreserv").click(function(){
     }
 });
 
+$("#btn_report_room").click(function(){
+    var str_room_report = $("#room_report").val();
+    var str_month_report = $("#month_report").val();
+    if(str_room_report != "")
+    {
+        $.ajax({
+            type: "POST",
+            url: "data_reportroom.php",
+            data: "str_room="+str_room_report+"&str_month="+str_month_report,
+            beforeSend: function()
+            {
+                $("#dataReport_room").html("Loading...");
+            },
+            success: function(data)
+            {
+                $("#dataReport_room").html(data);
+            }
+        });
+    }
+});
+
 // setInterval(function(){
 //     $.ajax({
 //         url: "get_nofication.php",

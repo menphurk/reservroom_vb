@@ -55,6 +55,7 @@ if($_POST['btn_create_reserv'])
     $str_txt_other = mysql_real_escape_string($_POST['txt_other']);
     $str_table_reserv = mysql_real_escape_string($_POST['table_reserv']);
     $str_update_id = mysql_real_escape_string($_POST['update_id']);
+
     //------CheckRoom---//
             $check_room = "SELECT * FROM reserv WHERE id_room ='".$str_room."'
             AND 
@@ -92,11 +93,30 @@ if($_POST['btn_create_reserv'])
                 $result_insertevent = mysql_query($str_insertevent);
                 if($result_insertevent)
                 {
+
                     echo "<script>alert('จองห้องเรียบร้อยแล้ว')</script>";
                     $showdata_event = "SELECT * FROM reserv WHERE id_reserv='".$nextId."'";
                     $resultdata_event = mysql_query($showdata_event);
                     $rowdata_event = mysql_fetch_array($resultdata_event);
                     echo "<meta http-equiv='refresh' content='0;url=show_reserv.php?id_reserv=$rowdata_event[id_reserv]';>";
+
+                    if($rowdata_event['id_status_reserv'] == 1)
+                    {
+                        $str_status = "ไม่อนุมัติ";
+                    }elseif($rowdata_event['id_status_reserv'] == 2)
+                    {
+                        $str_status = "อนุมัติ";
+                    }elseif($rowdata_event['id_status_reserv'] == 3)
+                    {
+                        $str_status = "ยกเลิก (หมายเหตุ:)".$rowdata_event['comment_reserv'];
+                    }
+                    //LineNotify//
+                    $message = "\nเลขที่จอง:".$nextId."\n".'เรื่อง: '.$str_topic."\n".'เบอร์ติดต่อ: '.$str_tel."\n".'สถานะ: '.$str_status."\n".'URL: '.$_SERVER['HTTP_HOST'].'/reservroom/show_reserv.php?id='.$nextId;
+                    
+                    sendlinemesg();
+                    header('Content-Type: text/html; charset=utf-8');
+                    $res = notify_message($message);
+
                 }else
                 {
                     echo "<script>alert('เกิดข้อผิดพลาดในการจองห้อง กรุณาลองใหม่อีกครั้ง!')</script>";
@@ -104,4 +124,32 @@ if($_POST['btn_create_reserv'])
                 }
             }
 }
+
+                    // //LineNotify//
+                    function sendlinemesg() {
+	
+                        define('LINE_API',"https://notify-api.line.me/api/notify");
+                        define('LINE_TOKEN','FQrUgIoZqSgWruTPCrI9iJVM72IchWPoiolt5kyZjqN');
+                    
+                        function notify_message($message){
+                    
+                            $queryData = array('message' => $message);
+                            $queryData = http_build_query($queryData,'','&');
+                            $headerOptions = array(
+                                'http'=>array(
+                                    'method'=>'POST',
+                                    'header'=> "Content-Type: application/x-www-form-urlencoded\r\n"
+                                            ."Authorization: Bearer ".LINE_TOKEN."\r\n"
+                                            ."Content-Length: ".strlen($queryData)."\r\n",
+                                    'content' => $queryData
+                                )
+                            );
+                            $context = stream_context_create($headerOptions);
+                            $result = file_get_contents(LINE_API,FALSE,$context);
+                            $res = json_decode($result);
+                            return $res;
+                    
+                        }
+                    
+                    }
 ?>

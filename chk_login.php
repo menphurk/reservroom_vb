@@ -1,5 +1,6 @@
 <?php session_start();
     include_once('include/Conn.php');
+    $date = date('d-m-Y H:i:s');
     if(isset($_POST['btn_login']))
     {
         $username_log = mysql_real_escape_string($_POST['username_log']);
@@ -22,6 +23,12 @@
                 $strSessionID = session_id();
                 $sql_UserOnline = "INSERT INTO `users_online`(`sid`, `time`, `ip`, `UserID`) VALUES ('".$strSessionID."',NOW(),'".$_SERVER['REMOTE_ADDR']."','".$_SESSION['login'][0]."')";
                 mysql_query($sql_UserOnline);
+                    // //LineNotify//
+                    // $message = "\nSSID: ".$strSessionID."\n".'IP: '.$_SERVER['REMOTE_ADDR']."\n".'Name: '.$_SESSION['ses_name']."\n".'Date: '.$date;
+                    
+                    // sendlinemesg();
+                    // header('Content-Type: text/html; charset=utf-8');
+                    // $res = notify_message($message);
            echo "<script>window.location.href='reserv.php'</script>";
         }else
         {
@@ -32,4 +39,31 @@
     {
         echo "";
     }
+                    // // //LineNotify//
+                    //  function sendlinemesg() {
+	
+                    //      define('LINE_API',"https://notify-api.line.me/api/notify");
+                    //      define('LINE_TOKEN','FQrUgIoZqSgWruTPCrI9iJVM72IchWPoiolt5kyZjqN');
+                    
+                    //      function notify_message($message){
+                    
+                    //          $queryData = array('message' => $message);
+                    //          $queryData = http_build_query($queryData,'','&');
+                    //          $headerOptions = array(
+                    //              'http'=>array(
+                    //                  'method'=>'POST',
+                    //                  'header'=> "Content-Type: application/x-www-form-urlencoded\r\n"
+                    //                          ."Authorization: Bearer ".LINE_TOKEN."\r\n"
+                    //                          ."Content-Length: ".strlen($queryData)."\r\n",
+                    //                  'content' => $queryData
+                    //              )
+                    //          );
+                    //         $context = stream_context_create($headerOptions);
+                    //          $result = file_get_contents(LINE_API,FALSE,$context);
+                    //          $res = json_decode($result);
+                    //          return $res;
+                    
+                    //      }
+                    
+                    // }
 ?>
