@@ -33,6 +33,10 @@ if ($result_calendar = mysql_query($get_calendar)) {
         {
             $className = "room5";
         }
+        if($obj_calendar['id_room'] == "RVB00006")
+        {
+            $className = "room6";
+        }
 
         $startday = $obj_calendar['startday'];
         $str_exstart = explode("-",$startday);

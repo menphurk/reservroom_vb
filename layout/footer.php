@@ -13,6 +13,7 @@
 		<script src="js/jquery-ui.js?rev=<?php echo time();?>"></script>
 		<script src="js/jquery.PrintArea.js?rev=<?php echo time();?>"></script>
 		<script src="js/bootbox.js?rev=<?php echo time();?>"></script>
+		<script src="js/gcal.js?rev=<?php echo time();?>"></script>
 		<!-- ace scripts -->
 		<script src="js/elements.scroller.js?rev=<?php echo time();?>"></script>
 		<script src="js/elements.colorpicker.js?rev=<?php echo time();?>"></script>
