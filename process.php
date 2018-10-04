@@ -282,7 +282,7 @@
         $row = mysql_fetch_array($q);
         $maxId = substr($row['lastid'],-5);
         $maxId = ($maxId + 1);
-        $maxId = substr("00000".$maxId,-5);
+        $maxId = substr("0000".$maxId,-5);
         $nextId = $CodeRoom.$maxId;
         //--RUNROOM--//
 
@@ -301,9 +301,11 @@
                 $num = mysql_real_escape_string($_POST['num_room']);
                 $status = mysql_real_escape_string($_POST['status_room']);
                 $update_id = mysql_real_escape_string($_POST['update_id']);
-                $ch_data_room = "INSERT INTO `room`(`id_room`, `name_room`, `desc_room`, `num_room`, `img_room`, `id_status_room`, `create_date`, `update_id`) 
-                VALUES ('".$nextId."','".$name."','".$desc."','".$num."','".$img_data."','".$status."','".$create_date."','".$update_id."')";
+                $ch_data_room = "INSERT INTO `room`(`id_room`, `name_room`, `desc_room`, `num_room`, `img_room`, `id_status_room`, `update_id`) 
+                VALUES ('".$nextId."','".$name."','".$desc."','".$num."','".$img_data."','".$status."','".$update_id."')";
                 $result_room = mysql_query($ch_data_room);
+				echo $ch_data_room;
+				echo $result_room;
                 if($result_room == 1)
                 {
                     echo "<script>alert('เพิ่มข้อมูลห้องเรียบร้อยแล้ว')</script>";

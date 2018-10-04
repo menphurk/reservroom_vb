@@ -75,6 +75,30 @@
                                 <div class="tab-pane fade" role="tabpanel" id="event_table" aria-labelledby="event_table-tab"> 
                                     <div class="row">
                                         <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-4">
+                                            <form class="form-inline">
+                                                <div class="form-group">
+                                                    <label for="search_reserv">ค้นหา :</label>
+                                                    <select class="form-control" id="dataReserv_condition" onchange="change_room(this.value)">
+                                                        <option value="">-----</option>
+                                                        <option value="id_reserv">เลขที่จอง</option>
+                                                        <option value="topic">หัวข้อประชุม</option>
+                                                        <option value="rs.id_room">ห้องประชุม</option>
+                                                        <option value="name_log">ชื่อผู้จอง</option>
+                                                        <option value="startday">วันที่จอง</option>
+                                                        <option value="id_status_reserv">สถานะ</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-5">
+                                                        <span id="show_textbox_reserv"><input type="text" class="form-control" id="txt_searchreserv" placeholder="กรอกคำที่ต้องการค้นหา"></span>
+                                                    </div>
+                                                </div>
+                                                <button type="button" id="btn_search_data" onclick="load_data('1',$('#txt_searchreserv').val(),$('#search').val());" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;ค้นหา</button>
+                                            </form>        
+                                            </div>
+                                        </div>
                                             <span id="data_reserv"></span>
                                         </div>
                                     </div>     

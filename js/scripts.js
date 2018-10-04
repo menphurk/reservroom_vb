@@ -22,10 +22,6 @@
             center: 'title',
             right: 'month,agendaWeek,agendaDay,listWeek'
         },
-        googleCalendarApiKey: 'AIzaSyBbnyIu8K8NUM1zdVDEzJGtjjT6qmSmw2Q',
-        events: {
-          googleCalendarId: 'th.th#holiday@group.v.calendar.google.com'
-        },
         eventRender: function (event, element) {
             element.attr('href', 'javascript:void(0);');
             element.click(function() {
@@ -98,6 +94,7 @@
         },
         lang: 'th',
         editable: false,
+        events: "data_calendar.php",
         eventLimit:true,
     });
 

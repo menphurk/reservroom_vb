@@ -21,8 +21,6 @@
             );
                 $_SESSION['login'] = $ses_data;
                 $strSessionID = session_id();
-                $sql_UserOnline = "INSERT INTO `users_online`(`sid`, `time`, `ip`, `UserID`) VALUES ('".$strSessionID."',NOW(),'".$_SERVER['REMOTE_ADDR']."','".$_SESSION['login'][0]."')";
-                mysql_query($sql_UserOnline);
                     // //LineNotify//
                     // $message = "\nSSID: ".$strSessionID."\n".'IP: '.$_SERVER['REMOTE_ADDR']."\n".'Name: '.$_SESSION['ses_name']."\n".'Date: '.$date;
                     

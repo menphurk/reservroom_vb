@@ -3,7 +3,7 @@
 </body>
 </html>
         <!--JS-->
-        <script src="js/jquery.js?rev=<?php echo time();?>"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="js/scripts.js?rev=<?php echo time();?>"></script>
 		<script src="js/date_time.js?rev=<?php echo time();?>"></script>
         <script src="js/bootstrap.min.js?rev=<?php echo time();?>"></script>  
@@ -13,7 +13,9 @@
 		<script src="js/jquery-ui.js?rev=<?php echo time();?>"></script>
 		<script src="js/jquery.PrintArea.js?rev=<?php echo time();?>"></script>
 		<script src="js/bootbox.js?rev=<?php echo time();?>"></script>
-		<script src="js/gcal.js?rev=<?php echo time();?>"></script>
+		<script src="https://momentjs.com/downloads/moment.min.js"></script>
+		<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js'></script>
+		<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/gcal.min.js'></script>
 		<!-- ace scripts -->
 		<script src="js/elements.scroller.js?rev=<?php echo time();?>"></script>
 		<script src="js/elements.colorpicker.js?rev=<?php echo time();?>"></script>
