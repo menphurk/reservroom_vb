@@ -124,15 +124,25 @@ $result_event = mysql_query($get_reserv);
     </a>
     </li>
     <?php } ?>
-    <?php for($i=1;$i<=$num_pages;$i++){
-        if($i == $page)
-        {
-            $cur_page = "class='active'";
-        }else
-        {
-            $cur_page = "";
-        }
-    ?>
+    <?php 
+            $RankPage = 10;
+            $LastShowPage = $page + $RankPage;
+            if($LastShowPage > $num_pages){
+                $LastShowPage = $num_pages;
+            }
+            $FirstShowPage = $page - $RankPage;
+            if($FirstShowPage < 1){
+                $FirstShowPage = 1;
+            }
+            for($i=$FirstShowPage;$i<=$LastShowPage;$i++){
+                if($i == $page)
+                {
+                    $cur_page = "class='active'";
+                }else
+                {
+                    $cur_page = "";
+                }
+            ?>
         <li <?php echo $cur_page;?>><a href="#" onclick="load_data('<?php echo $i;?>')"><?php echo $i;?></a></li>
 <?php } ?>
 <?php if($page != $num_pages)
