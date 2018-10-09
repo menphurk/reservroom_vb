@@ -136,36 +136,47 @@ if(isset($_POST['get_dataReserv']))
     ?>
     </table>
     <p>มีทั้งหมด <?php echo $num_event;?> รายการ</p>
+
     <nav aria-label="Page navigation">
-    <ul class="pagination">
-        <?php if($prev_page)
-        {
-        ?>
-        <li>
-        <a href="#" onclick="load_data('<?php echo $prev_page;?>')" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-        </a>
-        </li>
-        <?php } ?>
-        <?php for($i=1;$i<=$num_pages;$i++){
-            if($i == $page)
+        <ul class="pagination">
+            <?php if($prev_page)
             {
-                $cur_page = "class='active'";
-            }else
-            {
-                $cur_page = "";
-            }
-        ?>
-            <li <?php echo $cur_page;?>><a href="#" onclick="load_data('<?php echo $i;?>')"><?php echo $i;?></a></li>
-    <?php } ?>
-    <?php if($page != $num_pages)
-    {?>
-        <li>
-            <a href="#" onclick="load_data('<?php echo $Next_page;?>')" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+            ?>
+            <li>
+            <a href="#" onclick="load_data('<?php echo $prev_page;?>')" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
             </a>
-        </li>
-    <?php } ?>
-    </ul>
-</nav>
+            </li>
+            <?php } ?>
+            <?php 
+            $RankPage = 30;
+            $LastShowPage = $page + $RankPage;
+            if($LastShowPage > $num_pages){
+                $LastShowPage = $num_pages;
+            }
+            $FirstShowPage = $page - $RankPage;
+            if($FirstShowPage < 1){
+                $FirstShowPage = 1;
+            }
+            for($i=$FirstShowPage;$i<=$LastShowPage;$i++){
+                if($i == $page)
+                {
+                    $cur_page = "class='active'";
+                }else
+                {
+                    $cur_page = "";
+                }
+            ?>
+                <li <?php echo $cur_page;?>><a href="#" onclick="load_data('<?php echo $i;?>')"><?php echo $i;?></a></li>
+        <?php } ?>
+        <?php if($page != $num_pages)
+        {?>
+            <li>
+                <a href="#" onclick="load_data('<?php echo $Next_page;?>')" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        <?php } ?>
+        </ul>
+    </nav>
 <?php } ?>
