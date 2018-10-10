@@ -117,6 +117,9 @@ if($num_reportReserv == 0)
                         }else if($value_report['id_room'] == 'RVB00005')
                         {
                             $colorRoom = "#000000";
+                        }else if($value_report['id_room'] == 'RVB00006'){
+                            
+                            $colorRoom = "#8B4513";
                         }
 
                         if($value == $value_report['dayreserv'])
