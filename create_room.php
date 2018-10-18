@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                        <<input type="hidden" name="update_id" value="<?php echo $_SESSION['login'][0];?>">
+                        <input type="hidden" name="update_id" value="<?php echo $_SESSION['login'][0];?>">
                         <center><button type="submit" class="btn btn-primary" id="btn_create_room" name="btn_create_room">สร้างห้อง</button></center>
                         </div>
                     </div>

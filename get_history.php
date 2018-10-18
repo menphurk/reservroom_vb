@@ -114,17 +114,17 @@ $result_event = mysql_query($get_reserv);
 </table>
 <p>มีทั้งหมด <?php echo $num_event;?> รายการ</p>
 <nav aria-label="Page navigation">
-<ul class="pagination">
-    <?php if($prev_page)
-    {
-    ?>
-    <li>
-    <a href="#" onclick="load_data('<?php echo $prev_page;?>')" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-    </a>
-    </li>
-    <?php } ?>
-    <?php 
+        <ul class="pagination">
+            <?php if($prev_page)
+            {
+            ?>
+            <li>
+            <a href="#" onclick="load_data('<?php echo $prev_page;?>')" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+            <?php } ?>
+            <?php 
             $RankPage = 10;
             $LastShowPage = $page + $RankPage;
             if($LastShowPage > $num_pages){
@@ -143,16 +143,16 @@ $result_event = mysql_query($get_reserv);
                     $cur_page = "";
                 }
             ?>
-        <li <?php echo $cur_page;?>><a href="#" onclick="load_data('<?php echo $i;?>')"><?php echo $i;?></a></li>
-<?php } ?>
-<?php if($page != $num_pages)
-{?>
-    <li>
-        <a href="#" onclick="load_data('<?php echo $Next_page;?>')" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-        </a>
-    </li>
-<?php } ?>
-</ul>
-</nav>
+                <li <?php echo $cur_page;?>><a href="#" onclick="load_history('<?php echo $i;?>')"><?php echo $i;?></a></li>
+        <?php } ?>
+        <?php if($page != $num_pages)
+        {?>
+            <li>
+                <a href="#" onclick="load_history('<?php echo $Next_page;?>')" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        <?php } ?>
+        </ul>
+    </nav>
 <?php } ?>
