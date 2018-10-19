@@ -48,6 +48,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="color_room" class="col-sm-3 control-label">สีของห้อง</label>
+                        <div class="col-sm-1">
+                            <input type="color" class="form-control" id="color_room" name="color_room">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="img_room" class="col-sm-3 control-label">รูปห้อง</label>
                         <div class="col-sm-4">
                             <input type="file" class="form-control" id="img_room" name="img_room" onchange="readURL(this);">

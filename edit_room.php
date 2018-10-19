@@ -60,6 +60,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="color_room" class="col-sm-3 control-label">สีของห้อง</label>
+                        <div class="col-sm-1">
+                            <input type="color" class="form-control" id="color_room_edit" name="color_room_edit" value="<?php echo $row_edit_room['color_room'];?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="img_room" class="col-sm-3 control-label">รูปห้อง</label>
                         <div class="col-sm-4">
                             <input type="file" class="form-control" id="img_room_edit" name="img_room_edit" onchange="readURL(this);">

@@ -299,10 +299,11 @@
                 $name = mysql_real_escape_string($_POST['name_room']);
                 $desc = mysql_real_escape_string($_POST['desc_room']);
                 $num = mysql_real_escape_string($_POST['num_room']);
+                $color = mysql_real_escape_string($_POST['color_room']);
                 $status = mysql_real_escape_string($_POST['status_room']);
                 $update_id = mysql_real_escape_string($_POST['update_id']);
-                $ch_data_room = "INSERT INTO `room`(`id_room`, `name_room`, `desc_room`, `num_room`, `img_room`, `id_status_room`, `update_id`) 
-                VALUES ('".$nextId."','".$name."','".$desc."','".$num."','".$img_data."','".$status."','".$update_id."')";
+                $ch_data_room = "INSERT INTO `room`(`id_room`, `name_room`, `desc_room`, `num_room`, `img_room`, `color_room`, `id_status_room`, `update_id`) 
+                VALUES ('".$nextId."','".$name."','".$desc."','".$num."','".$img_data."', '".$color."', '".$status."','".$update_id."')";
                 $result_room = mysql_query($ch_data_room);
                 if($result_room == 1)
                 {
@@ -331,6 +332,7 @@
         $name_edit = mysql_real_escape_string($_POST['name_room_edit']);
         $desc_edit = mysql_real_escape_string($_POST['desc_room_edit']);
         $num_edit = mysql_real_escape_string($_POST['num_room_edit']);
+        $color_edit = mysql_real_escape_string($_POST['color_room_edit']);
         $status_edit = mysql_real_escape_string($_POST['status_room_edit']);
         $update_id = mysql_real_escape_string($_POST['update_id']);
         $id_room_edit = mysql_real_escape_string($_POST['id_room_edit']);
@@ -338,6 +340,7 @@
         `name_room`='".$name_edit."',
         `desc_room`='".$desc_edit."',
         `num_room`='".$num_edit."',
+        `color_room`='".$color_edit."',
         `img_room`='".$imgroom_edit."',
         `id_status_room`='".$status_edit."',
         `update_id`='".$update_id."' 
