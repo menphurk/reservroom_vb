@@ -49,38 +49,6 @@ if(isset($_GET['id_reserv']))
     $str_table_reserv = mysql_real_escape_string($_POST['table_reserv']);
     $str_update_id = mysql_real_escape_string($_POST['update_id']);
 
-    //------CheckRoom---//
-    $check_room = "SELECT * FROM reserv WHERE id_room ='".$str_room."'
-    AND 
-    (
-        (startday BETWEEN '".$start_event."' AND '".$end_event."')
-        OR 
-        (endday BETWEEN '".$start_event."' AND '".$end_event."')
-        OR 
-        ('".$start_event."' BETWEEN startday AND endday)
-        OR
-        ('".$end_event."' BETWEEN startday AND endday)
-    )
-    AND
-    (
-        (starttime BETWEEN '".$str_starttime."' AND '".$str_endtime."')
-        OR 
-        (endtime BETWEEN '".$str_starttime."' AND '".$str_endtime."')
-        OR
-        ('".$str_starttime."' BETWEEN starttime AND endtime)
-        OR
-        ('".$str_endtime."' BETWEEN starttime AND endtime)
-    )
-    AND id_status_reserv != '3'
-    ";
-    $result_checkRoom = mysql_query($check_room);
-    $num_checkRoom = mysql_num_rows($result_checkRoom);
-    if($num_checkRoom >= 1)
-    {
-        echo "<script>alert('ไม่สามารถจองห้องได้ เนื่องจากห้องถูกจองใช้งานไปแล้ว กรุณาเลือกเวลาจองอื่นๆ')</script>";
-        echo "<script>window.history.back();</script>";
-    }else
-    {
         $check_reserv = "UPDATE `reserv` SET";
         $check_reserv .= " `startday`='".$start_event."' ";
         $check_reserv .= ",`endday`='".$end_event."' ";
@@ -121,7 +89,6 @@ if(isset($_GET['id_reserv']))
             echo "<script>alert('ไม่สามารถบันทึกการเปลี่ยนแปลงได้ กรุณาลองใหม่อีกครั้ง!');</script>";
             echo "<script>window.history.back();</script>";
         }
-    }
 }else
 {
     echo "";
