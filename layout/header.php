@@ -9,9 +9,9 @@
         <link href="css/fullcalendar.css?rev=<?php echo time();?>" rel="stylesheet">
         <link href="css/fullcalendar.print.css?rev=<?php echo time();?>" rel="stylesheet" media="print">
 		<link href="css/ace.css?rev=<?php echo time();?>" class="ace-main-stylesheet" id="main-ace-style" rel="stylesheet">
-		<!--[if lte IE 9]>
+		<!-- [if lte IE 9]> -->
 		  <link rel="stylesheet" href="css/ace-ie.css" />
-		<![endif]-->
+		<!-- <![endif] -->
         <!--FONTAWESOME-->
         <link href="css/font-awesome.css?rev=<?php echo time();?>" rel="stylesheet">
 
