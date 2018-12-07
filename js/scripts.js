@@ -1258,26 +1258,16 @@ $("#btn_report_room").click(function(){
     }
 });
 
-// setInterval(function(){
-//     $.ajax({
-//         url: "get_nofication.php",
-//         data: "",
-//         async:false,
-//         success: function(get_nofication)
-//         {
-//         var obj = jQuery.parseJSON(get_nofication);
-//             if(obj != '')
-//             {
-//                 $.each(obj, function(key, val) {
-//                     $.gritter.add({
-// 					title: val['id_reserv']+"::"+val['topic'],
-// 					text: val['desc'],
-// 					class_name: 'gritter-success'
-//                     });
 
-//                 return false;
-//                 });
-//             }
-//         }
-//     });
-// },10000);
+$("input[name='table_reserv']").click(function(){
+    var IdVal = $("input[name='table_reserv']:checked").val();
+    if(IdVal == 3)
+    {
+        $("#txt_tableReserv").removeAttr('disabled','disabled')
+        $("#txt_tableReserv").focus()
+    }else
+    {
+        $("#txt_tableReserv").attr('disabled','disabled')
+        $("#txt_tableReserv").val("")
+    }
+});

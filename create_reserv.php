@@ -386,18 +386,21 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">รูปแบบการจัดห้องประชุม :</label>
-                <div class="col-sm-2">
-                    <select class="form-control" name="table_reserv" id="table_reserv">
-                        <option value="">--- กรุณาเลือก ---</option>
+                <div class="col-sm-7">
                     <?php
                     $sql_table = "SELECT * FROM table_reserv";
                     $query_table = mysql_query($sql_table);
                     while($row_table = mysql_fetch_array($query_table))
                     {
-                        echo "<option value='$row_table[id]'>$row_table[name_table]</option>";
+                        echo "<div class='radio-inline'>";
+                        echo "<label>";
+                            echo "<input type='radio' name='table_reserv' id='table_reserv_$row_table[id]' value='$row_table[id]'>";
+                            echo $row_table['name_table'];
+                        echo "</label>";
+                        echo "</div>";
                     }
+                    echo "&nbsp;&nbsp;<input type='text' name='txt_tableReserv' id='txt_tableReserv' disabled='disabled'>";
                     ?>
-                    </select>
                 </div>
             </div>
         </div>

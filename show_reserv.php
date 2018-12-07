@@ -238,7 +238,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <p class="text-left">รูปแบบการจัดห้องประชุม : <ins><?php echo $rowEdit_reserv['name_table'];?></ins></p>
+                        <p class="text-left">รูปแบบการจัดห้องประชุม : <ins><?php echo $rowEdit_reserv['name_table'];?>&nbsp;&nbsp;<?php if($rowEdit_reserv['id_table_reserv'] == 3){ echo "<strong>(".$rowEdit_reserv['comment_table_reserv'].")</strong>"; } ?></ins></p>
                     </td>
                 </tr>
                 <tr>

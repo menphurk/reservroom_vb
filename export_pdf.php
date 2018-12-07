@@ -202,7 +202,7 @@
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;">
                     <td colspan="2">
-                        รูปแบบการจัดห้องประชุม : <strong><ins><?php echo $rowEdit_reserv['name_table'];?></ins></strong>
+                        รูปแบบการจัดห้องประชุม : <strong><ins><?php echo $rowEdit_reserv['name_table'];?>&nbsp;&nbsp;<?php if($rowEdit_reserv['id_table_reserv'] == 3){ echo "<strong>(".$rowEdit_reserv['comment_table_reserv'].")</strong>"; } ?></ins></strong>
                     </td>
                 </tr>
                 <tr style="border:1px solid #000000;font-size:12pt;">

@@ -579,9 +579,7 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
     </div>
     <div class="form-group">
                 <label for="" class="col-sm-2 control-label">รูปแบบการจัดห้องประชุม :</label>
-                <div class="col-sm-2">
-                    <select class="form-control" name="table_reserv" id="table_reserv">
-                        <option value="">--- กรุณาเลือก ---</option>
+                <div class="col-sm-7">
                     <?php
                     $sql_table = "SELECT * FROM table_reserv";
                     $query_table = mysql_query($sql_table);
@@ -589,15 +587,25 @@ function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '24' ) 
                     {
                         if($row_table['id'] == $row_reserv_edit['id_table_reserv'])
                         {
-                            $selected_table = "selected";
+                            $checked_table = "checked";
                         }else
                         {
-                            $selected_table = "";
+                            $checked_table = "";
                         }
-                        echo "<option value='$row_table[id]' $selected_table>$row_table[name_table]</option>";
+                        echo "<div class='radio-inline'>";
+                        echo "<label>";
+                            echo "<input type='radio' name='table_reserv' id='table_reserv_$row_table[id]' value='$row_table[id]' $checked_table>";
+                            echo $row_table['name_table'];
+                        echo "</label>";
+                        echo "</div>";
                     }
+                    if($row_reserv_edit['id_table_reserv'] == 3){
+                        $txt_tableReserv = "";
+                    }else{
+                        $txt_tableReserv = "disabled='disabled' ";
+                    }
+                    echo "&nbsp;&nbsp;<input type='text' name='txt_tableReserv' id='txt_tableReserv' $txt_tableReserv value='$row_reserv_edit[comment_table_reserv]'>";
                     ?>
-                    </select>
                 </div>
             </div>
     <div class="form-group">
