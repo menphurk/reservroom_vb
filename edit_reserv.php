@@ -8,7 +8,10 @@
         $data_reserv_edit = "select * from reserv where id_reserv='".$id_reserv_edit."' ";
         $result_reserv_edit = mysql_query($data_reserv_edit);
         $row_reserv_edit = mysql_fetch_array($result_reserv_edit);
-
+        //AccessDenine//
+        if($row_reserv_edit['update_id'] != $_SESSION['login'][0]){
+            die("ไม่สามารถเข้าถึงข้อมูลการจองได้");
+        }
         //---Day----//
         $date_year = date("Y")+543;
 
