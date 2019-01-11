@@ -175,7 +175,7 @@
         $email = mysql_real_escape_string($_POST['email']);
         $group = mysql_real_escape_string($_POST['group']);
         $role = mysql_real_escape_string($_POST['role']);
-        $ch_data_user = "INSERT INTO `users`(`id_user`, `username_log`, `password_log`,`title_id`, `name_log`, `email_log`, `create_date`, `id_group_users`, `id_role`) 
+        $ch_data_user = "INSERT INTO `users`(`id_user`, `username_log`, `password_log`,`title_id`, `name_log`, `email_log`, `create_dateUser`, `id_group_users`, `id_role`) 
         VALUES (NULL,'".$username."','".$password."','".$title."','".$name."','".$email."','".$create_date."','".$group."','".$role."')";
          // echo $ch_data_user;
         $result_data_user = mysql_query($ch_data_user);
